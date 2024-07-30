@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Data Request Form";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Request Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Data Request Form</h2>
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <form id="multiStepForm">
+            <!-- Step 1: Basic Information -->
+            <div class="step active">
+                <h4>Basic Information</h4>
+                <div class="form-group">
+                    <label for="organization">Organization</label>
+                    <input type="text" class="form-control" id="organization" name="organization">
+                    <span class="error" id="organizationError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="organizationType">Organization Type</label>
+                    <select class="form-control" id="organizationType" name="organizationType">
+                        <option value="">Select</option>
+                        <option value="Govt">Govt</option>
+                        <option value="Private Sector">Private Sector</option>
+                        <option value="LINGO">LINGO</option>
+                    </select>
+                    <span class="error" id="organizationTypeError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="programTitle">Program Title</label>
+                    <input type="text" class="form-control" id="programTitle" name="programTitle">
+                    <span class="error" id="programTitleError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="donor">Donor</label>
+                    <input type="text" class="form-control" id="donor" name="donor">
+                    <span class="error" id="donorError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="partners">Partners</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="partner1" name="partners" value="1">
+                        <label class="form-check-label" for="partner1">Partner 1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="partner2" name="partners" value="2">
+                        <label class="form-check-label" for="partner2">Partner 2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="partner3" name="partners" value="3">
+                        <label class="form-check-label" for="partner3">Partner 3</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="partner4" name="partners" value="4">
+                        <label class="form-check-label" for="partner4">Partner 4</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="partner5" name="partners" value="5">
+                        <label class="form-check-label" for="partner5">Partner 5</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+            </div>
+            <!-- Step 2: Program Details -->
+            <div class="step">
+                <h4>Program Details</h4>
+                <div class="form-group">
+                    <label for="targetSectors">Target Sectors</label>
+                    <input type="text" class="form-control" id="targetSectors" name="targetSectors">
+                    <span class="error" id="targetSectorsError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="briefProgram">Brief on Program</label>
+                    <textarea class="form-control" id="briefProgram" name="briefProgram" rows="3"></textarea>
+                    <span class="error" id="briefProgramError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="totalTarget">Total Target</label>
+                    <input type="number" class="form-control" id="totalTarget" name="totalTarget">
+                    <span class="error" id="totalTargetError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="projectStart">Project Start</label>
+                    <input type="date" class="form-control" id="projectStart" name="projectStart">
+                    <span class="error" id="projectStartError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="projectEnd">Project End</label>
+                    <input type="date" class="form-control" id="projectEnd" name="projectEnd">
+                    <span class="error" id="projectEndError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="targetRequest">Target Request</label>
+                    <input type="number" class="form-control" id="targetRequest" name="targetRequest">
+                    <span class="error" id="targetRequestError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="criteria">Criteria</label>
+                    <textarea class="form-control" id="criteria" name="criteria" rows="3"></textarea>
+                    <span class="error" id="criteriaError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="referralDeliveryDeadline">Referral Delivery Deadline</label>
+                    <input type="date" class="form-control" id="referralDeliveryDeadline" name="referralDeliveryDeadline">
+                    <span class="error" id="referralDeliveryDeadlineError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="referralsTotal">Referrals Total</label>
+                    <input type="number" class="form-control" id="referralsTotal" name="referralsTotal">
+                    <span class="error" id="referralsTotalError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" class="form-control" id="status" name="status">
+                    <span class="error" id="statusError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="counterpart">Counterpart</label>
+                    <input type="text" class="form-control" id="counterpart" name="counterpart">
+                    <span class="error" id="counterpartError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="statusActivityNotes">Status/Activity Notes</label>
+                    <textarea class="form-control" id="statusActivityNotes" name="statusActivityNotes" rows="3"></textarea>
+                    <span class="error" id="statusActivityNotesError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="contactPerson">Contact Person</label>
+                    <input type="text" class="form-control" id="contactPerson" name="contactPerson">
+                    <span class="error" id="contactPersonError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="hiredSelfEmployed">Hired/Self-Employed</label>
+                    <input type="number" class="form-control" id="hiredSelfEmployed" name="hiredSelfEmployed">
+                    <span class="error" id="hiredSelfEmployedError"></span>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+            </div>
+            <!-- Step 3: Review -->
+            <div class="step">
+                <h4>Review</h4>
+                <p><strong>Organization:</strong> <span id="reviewOrganization"></span></p>
+                <p><strong>Organization Type:</strong> <span id="reviewOrganizationType"></span></p>
+                <p><strong>Program Title:</strong> <span id="reviewProgramTitle"></span></p>
+                <p><strong>Donor:</strong> <span id="reviewDonor"></span></p>
+                <p><strong>Partners:</strong> <span id="reviewPartners"></span></p>
+                <p><strong>Target Sectors:</strong> <span id="reviewTargetSectors"></span></p>
+                <p><strong>Brief on Program:</strong> <span id="reviewBriefProgram"></span></p>
+                <p><strong>Total Target:</strong> <span id="reviewTotalTarget"></span></p>
+                <p><strong>Project Start:</strong> <span id="reviewProjectStart"></span></p>
+                <p><strong>Project End:</strong> <span id="reviewProjectEnd"></span></p>
+                <p><strong>Target Request:</strong> <span id="reviewTargetRequest"></span></p>
+                <p><strong>Criteria:</strong> <span id="reviewCriteria"></span></p>
+                <p><strong>Referral Delivery Deadline:</strong> <span id="reviewReferralDeliveryDeadline"></span></p>
+                <p><strong>Referrals Total:</strong> <span id="reviewReferralsTotal"></span></p>
+                <p><strong>Status:</strong> <span id="reviewStatus"></span></p>
+                <p><strong>Counterpart:</strong> <span id="reviewCounterpart"></span></p>
+                <p><strong>Status/Activity Notes:</strong> <span id="reviewStatusActivityNotes"></span></p>
+                <p><strong>Contact Person:</strong> <span id="reviewContactPerson"></span></p>
+                <p><strong>Hired/Self-Employed:</strong> <span id="reviewHiredSelfEmployed"></span></p>
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+</body>
+</html>

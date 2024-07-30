@@ -1,0 +1,22 @@
+﻿.step {
+    display: none;
+}
+
+    .step.active {
+        display: block;
+    }
+
+.progress-bar {
+    width: 20%;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+@media (max-width: 767px) {
+    .progress-bar {
+        width: 100%;
+    }
+}

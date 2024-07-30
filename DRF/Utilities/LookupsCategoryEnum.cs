@@ -1,8 +1,10 @@
 ﻿namespace DRF.Utilities
 {
-    public enum LookupsCategoryEnum:int
+    public enum LookupsCategoryEnum : int
     {
-        ORGANISATION=1,
-        DONORS=2,
+        ORGANIZATION_TYPES = 1,
+        DONORS = 2,
+        TARGET_SECTORS = 3,
+        PARTNERS = 4
     }
 }

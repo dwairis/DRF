@@ -4,11 +4,11 @@ using DRF.Utilities;
 
 namespace DRF.Repositories
 {
-    public interface IUsersRepository : IDapperRepository<LookupsCategory>
+    public interface IUsersRepository : IDapperRepository<Users>
     {
         
     }
-    public class UsersRepository : DapperRepository<LookupsCategory>, IUsersRepository
+    public class UsersRepository : DapperRepository<Users>, IUsersRepository
     {
         private readonly ISqlConnectionsFactory sqlConnectionsFactory;
 

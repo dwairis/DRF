@@ -48,7 +48,7 @@ function fillReview() {
     $('#reviewOrganization').text($('#organization').val());
     $('#reviewOrganizationType').text($('#organizationType').val());
     $('#reviewProgramTitle').text($('#programTitle').val());
-    $('#reviewDonor').text($('#donor').val());
+    $('#reviewDonor').text($('#Donor').val());
 
     const partners = $('input[name="partners"]:checked').map(function () {
         return $(this).next('label').text();

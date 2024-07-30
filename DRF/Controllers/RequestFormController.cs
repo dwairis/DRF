@@ -8,9 +8,11 @@ namespace DRF.Controllers
     public class RequestFormController : Controller
     {
         private readonly ILookupsRepository lookupsRepository;
-        public RequestFormController(ILookupsRepository lookupsRepository)
+        private readonly IOrganizationRepository organizationRepository;
+        public RequestFormController(ILookupsRepository lookupsRepository, IOrganizationRepository organizationRepository)
         {
             this.lookupsRepository = lookupsRepository;
+            this.organizationRepository = organizationRepository;
 
         }
         public IActionResult Create()
@@ -24,6 +26,8 @@ namespace DRF.Controllers
                 DonorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.DONORS),
                 PartnersList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.PARTNERS),
                 TargetSectorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.TARGET_SECTORS),
+                OrganizationList = organizationRepository.GetOrganizationAsDropDown(),
+                OrganizationId =1
             });
         }
 

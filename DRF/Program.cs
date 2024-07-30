@@ -1,10 +1,12 @@
+using DRF.infrastructures;
+using DRF.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DRF.Data; // Adjust the namespace as needed
+
 
 namespace DRF
 {
@@ -16,10 +18,10 @@ namespace DRF
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddSingleton<ISqlConnectionsFactory,SqlConnectionsFactory>();
+            builder.Services.AddTransient<ILookupsRepository, LookupsRepository>();
             // Configure Entity Framework and add ApplicationDbContext
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+          
 
             var app = builder.Build();
 

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="infrastructures\" />
+    <Folder Include="Repositories\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Utilities\" />
   </ItemGroup>

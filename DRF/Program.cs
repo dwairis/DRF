@@ -20,8 +20,19 @@ namespace DRF
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<ISqlConnectionsFactory,SqlConnectionsFactory>();
             builder.Services.AddTransient<ILookupsRepository, LookupsRepository>();
+            builder.Services.AddTransient<ILookupsCategoryRepository, LookupsCategoryRepository>();
+            builder.Services.AddTransient<IOrganizationRepository, OrganizationRepository>();
+            builder.Services.AddTransient<IRequestDonorsRepository, RequestDonorsRepository>();
+            builder.Services.AddTransient<IRequestPartnersRepository, RequestPartnersRepository>();
+            builder.Services.AddTransient<IRequestsRepository, RequestsRepository>();
+            builder.Services.AddTransient<IRequestStatusRepository, RequestStatusRepository>();
+            builder.Services.AddTransient<IRequestTargetSectorsRepository, RequestTargetSectorsRepository>();
+            builder.Services.AddTransient<IRequestUpdatesRepository, RequestUpdatesRepository>();
+            builder.Services.AddTransient<IUploadedDataRepository, UploadedDataRepository>();
+            builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+
             // Configure Entity Framework and add ApplicationDbContext
-          
+
 
             var app = builder.Build();
 

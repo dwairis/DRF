@@ -11,35 +11,32 @@ namespace DRF.Controllers
         public RequestFormController(ILookupsRepository lookupsRepository)
         {
             this.lookupsRepository = lookupsRepository;
+
         }
-        public IActionResult Index()
+        public IActionResult Create()
         {
-            lookupsRepository.GetAll(); 
-            var x = lookupsRepository.GetById(1);
-            x.Value = "kkk";
-            lookupsRepository.Update(x);
-
-            lookupsRepository.Delete(x);
-
-
-lookupsRepository.Create(new Lookups()
-{
-    CategoryID = 1,
-})
-
             return View();
         }
-
-        [HttpPost]
-        public IActionResult Submit(RequestFormModel model)
+        public IActionResult OnCreateInit()
         {
-            if (ModelState.IsValid)
+            return Json(new
             {
-                // Handle the form submission here
-                return RedirectToAction("Success");
-            }
-            return View("Index");
+                DonorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.DONORS),
+                PartnersList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.PARTNERS),
+                TargetSectorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.TARGET_SECTORS),
+            });
         }
+
+        //[HttpPost]
+        //public IActionResult Submit(RequestFormModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Handle the form submission here
+        //        return RedirectToAction("Success");
+        //    }
+        //    return View("Index");
+        //}
 
         public IActionResult Success()
         {

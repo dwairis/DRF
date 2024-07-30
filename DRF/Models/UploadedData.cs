@@ -1,5 +1,8 @@
-﻿public class UploadedData
+﻿
+[Dapper.Contrib.Extensions.Table("dbo.UploadedData")]
+public class UploadedData
 {
+    [Dapper.Contrib.Extensions.ExplicitKey]
     public int Id { get; set; }
     public int? RequestId { get; set; }
     public string FileUrl { get; set; }

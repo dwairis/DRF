@@ -1,5 +1,10 @@
-﻿public class Users
+﻿
+
+[Dapper.Contrib.Extensions.Table("dbo.Users")]
+public class Users
 {
+    [Dapper.Contrib.Extensions.Key]
+
     public int Id { get; set; }
     public string Username { get; set; }
     public string Password { get; set; }

@@ -1,5 +1,10 @@
-﻿public class Requests
+﻿
+[Dapper.Contrib.Extensions.Table("dbo.Requests")]
+
+public class Requests
 {
+    [Dapper.Contrib.Extensions.Key]
+
     public int Id { get; set; }
     public int? ThirdPartyOrganization { get; set; }
     public string ProgramTitle { get; set; }

@@ -20,3 +20,15 @@
         width: 100%;
     }
 }
+.k-picker{
+    display:flex !important;
+}
+
+.k-wizard-content {
+    padding: 20px !important;
+}
+
+.invalid-input {
+    font-weight: bold;
+    color: #dc3545
+}

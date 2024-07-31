@@ -1,0 +1,15 @@
+﻿<form name="step2" id="step2">
+
+    <div class="form-group">
+        <label id="lblBriefOnProgram" for="BriefOnProgram">Brief on Program</label>
+        <textarea class="form-control" id="BriefOnProgram" name="BriefOnProgram" rows="3" required></textarea>
+        <span class="k-invalid-msg" data-for="BriefOnProgram" style="width:100%;display:block"></span>
+    </div>
+
+
+
+</form>
+<script>
+    var validatorSettings = AppFunctions.validatorSettings;
+    validatorStep2 = $("#step2").kendoValidator(validatorSettings).data("kendoValidator");
+</script>

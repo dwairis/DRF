@@ -1,0 +1,68 @@
+﻿<form name="step3" id="step3">
+    <div class="form-group">
+        <label id="lblTargetSectors" for="TargetSectors">Target Sectors</label>
+        <select type="text" class="form-control" id="TargetSectors" name="TargetSectors" required></select>
+        <span class="k-invalid-msg" data-for="TargetSectors" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblTargetRequest" for="TargetRequest">Target Request</label>
+        <input type="number" class="form-control" id="TargetRequest" name="TargetRequest" min="0">
+        <span class="k-invalid-msg" data-for="TargetRequest" style="width:100%;display:block"></span>
+
+    </div>
+    <div class="form-group">
+        <label id="lblTotalTarget" for="TotalTarget">Total Target</label>
+        <input type="number" class="form-control" id="TotalTarget" name="TotalTarget" min="0">
+        <span class="k-invalid-msg" data-for="TotalTarget" style="width:100%;display:block"></span>
+
+
+    </div>
+
+    <div class="form-group">
+        <label id="lblReferralDeliveryDL" for="ReferralDeliveryDL">Referral Delivery Deadline</label>
+        <input type="date" class="form-control" id="ReferralDeliveryDL" name="ReferralDeliveryDL">
+        <span class="k-invalid-msg" data-for="ReferralDeliveryDL" style="width:100%;display:block"></span>
+
+    </div>
+    <div class="form-group">
+        <label id="lblReferralTotal" for="ReferralTotal">Referrals Total</label>
+        <input type="number" class="form-control" id="ReferralTotal" name="ReferralTotal" min="0">
+        <span class="k-invalid-msg" data-for="ReferralTotal" style="width:100%;display:block"></span>
+
+    </div>
+
+</form>
+
+<script>
+    var validatorSettings = AppFunctions.validatorSettings;
+    validatorStep3 = $("#step3").kendoValidator(validatorSettings).data("kendoValidator");
+    var ReferralDeliveryDL = $("#ReferralDeliveryDL").kendoDatePicker({
+        dateInput: true, format: "yyyy-MM-dd"
+    }).data("kendoDatePicker");
+
+
+    TargetSectors = $('#TargetSectors').kendoMultiSelect({
+        optionLabel: '-- Select Sectors --',
+        dataTextField: 'text',
+        select: AppFunctions.disableDropdownItem(),
+        template: AppFunctions.getDropdownItemStyle(),
+        dataValueField: 'value',
+        dataSource: vmDate.targetSectorsList,
+    }).data('kendoMultiSelect');
+
+
+    var TargetRequest = $("#TargetRequest").kendoNumericTextBox({
+        format: "#", decimals: 0, min: 0
+    }).data("kendoNumericTextBox");
+
+    var TotalTarget = $("#TotalTarget").kendoNumericTextBox({
+        format: "#", decimals: 0, min: 0
+    }).data("kendoNumericTextBox");
+
+    var ReferralTotal = $("#ReferralTotal").kendoNumericTextBox({
+        format: "#", decimals: 0, min: 0
+    }).data("kendoNumericTextBox");
+
+
+
+</script>

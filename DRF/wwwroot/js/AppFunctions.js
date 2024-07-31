@@ -351,3 +351,26 @@ AppFunctions.DownloadExcel = function (e, documentName) {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 };
+
+AppFunctions.validatorSettings = {
+    rules: {},
+    messages: {
+
+        required: 'This field is mandatory',
+    },
+    validateInput: function (e) {
+        var lbl = document.getElementById("lbl" + e.field);
+        if (lbl) {
+            if (e.valid) {
+                lbl.classList.remove('invalid-input');
+            } else {
+                lbl.classList.add('invalid-input');
+            }
+        }
+    },
+    validate: function (e) {
+        if (!e.valid) {
+            AppFunctions.showErrorMsg('There are errors in the form fields, please check the data before submitting the form');
+        }
+    }
+}

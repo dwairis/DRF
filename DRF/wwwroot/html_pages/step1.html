@@ -1,0 +1,61 @@
+<form id="step1" name="step1">
+    <div class="form-group">
+        <label id="lblThirdPartyOrganization" for="ThirdPartyOrganization">Organization</label>
+        <input type="text" class="form-control" id="ThirdPartyOrganization" name="ThirdPartyOrganization" required>
+        <span class="k-invalid-msg" data-for="ThirdPartyOrganization" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblProgramTitle" for="ProgramTitle">Program Title</label>
+        <input type="text" class="form-control" id="ProgramTitle" name="ProgramTitle" required>
+        <span class="k-invalid-msg" data-for="ProgramTitle" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblDonors" for="Donors">Donors</label>
+        <select type="text" class="form-control" id="Donors" name="Donors" required></select>
+        <span class="k-invalid-msg" data-for="Donors" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblPartners" for="Partners">Partners</label>
+        <select type="text" class="form-control" id="Partners" name="Partners" required></select>
+        <span class="k-invalid-msg" data-for="Partners" style="width:100%;display:block"></span>
+
+    </div>
+</form>
+
+<script>
+    ThirdPartyOrganization = $('#ThirdPartyOrganization').kendoDropDownList({
+        optionLabel: '-- Select Organization --',
+        dataTextField: 'text',
+        select: AppFunctions.disableDropdownItem(),
+        template: AppFunctions.getDropdownItemStyle(),
+        dataValueField: 'value',
+        dataSource: vmDate.organizationList,
+        value: vmDate.organizationId,
+        dataBound: function () {
+            this.enable(false);
+        }
+    }).data('kendoDropDownList');
+
+    Donors = $('#Donors').kendoMultiSelect({
+        optionLabel: '-- Select Donors --',
+        dataTextField: 'text',
+        select: AppFunctions.disableDropdownItem(),
+        template: AppFunctions.getDropdownItemStyle(),
+        dataValueField: 'value',
+        dataSource: vmDate.donorsList,
+    }).data('kendoMultiSelect');
+
+    Partners = $('#Partners').kendoMultiSelect({
+        optionLabel: '-- Select Partners --',
+        dataTextField: 'text',
+        select: AppFunctions.disableDropdownItem(),
+        template: AppFunctions.getDropdownItemStyle(),
+        dataValueField: 'value',
+        dataSource: vmDate.partnersList,
+    }).data('kendoMultiSelect');
+
+
+
+    var validatorSettings = AppFunctions.validatorSettings;
+    validatorStep1 = $("#step1").kendoValidator(validatorSettings).data("kendoValidator");
+</script>

@@ -1,0 +1,18 @@
+﻿<form name="step4" id="step4">
+
+    <div class="form-group">
+        <label id="lblCriteria" for="Criteria">Criteria</label>
+        <textarea class="form-control" id="Criteria" name="Criteria" rows="3"></textarea>
+        <span class="k-invalid-msg" data-for="Criteria" style="width:100%;display:block"></span>
+
+    </div>
+
+
+
+
+
+</form>
+<script>
+    var validatorSettings = AppFunctions.validatorSettings;
+    validatorStep4 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
+</script>

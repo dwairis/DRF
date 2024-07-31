@@ -1,0 +1,51 @@
+﻿<form id="step4" name="step4">
+
+    <div class="form-group">
+    <label id="lblProjectStartDate" for="ProjectStartDate">Project Start</label>
+    <input type="date" class="form-control" id="ProjectStartDate" name="ProjectStartDate">
+    <span class="k-invalid-msg" data-for="ProjectStartDate" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblProjectEndDate" for="ProjectEndDate">Project End</label>
+        <input type="date" class="form-control" id="ProjectEndDate" name="ProjectEndDate">
+        <span class="k-invalid-msg" data-for="ProjectEndDate" style="width:100%;display:block"></span>
+    </div>
+
+    <div class="form-group">
+        <label id="lblContactPerson" for="ContactPerson">Contact Person</label>
+        <input type="text" class="form-control" id="ContactPerson" name="ContactPerson">
+        <span class="k-invalid-msg" data-for="ContactPerson" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblHiredSelfEmployed" for="HiredSelfEmployed">Hired/Self-Employed</label>
+        <input type="number" class="form-control" id="HiredSelfEmployed" name="HiredSelfEmployed" required>
+        <span class="k-invalid-msg" data-for="HiredSelfEmployed" style="width:100%;display:block"></span>
+    </div>
+    <div class="form-group">
+        <label id="lblCounterPart" for="CounterPart">Counterpart</label>
+        <input type="text" class="form-control" id="CounterPart" name="CounterPart" required>
+        <span class="k-invalid-msg" data-for="CounterPart" style="width:100%;display:block"></span>
+    </div>
+
+    <div class="form-group">
+        <label id="lblNotes" for="Notes">Status/Activity Notes</label>
+        <textarea class="form-control" id="Notes" name="Notes" rows="3"></textarea>
+        <span class="k-invalid-msg" data-for="Notes" style="width:100%;display:block"></span>
+    </div>
+
+</form>
+
+<script>
+    var validatorSettings = AppFunctions.validatorSettings;
+    var validator3 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
+    var ProjectStartDate = $("#ProjectStartDate").kendoDatePicker({
+        dateInput: true, format: "yyyy-MM-dd"
+    }).data("kendoDatePicker");
+
+    validatorStep5 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
+    var ProjectStartDate = $("#ProjectEndDate").kendoDatePicker({
+        dateInput: true, format: "yyyy-MM-dd"
+    }).data("kendoDatePicker");
+
+
+</script>

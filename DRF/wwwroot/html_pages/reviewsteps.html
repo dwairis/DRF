@@ -21,3 +21,21 @@
      <p><strong>Hired/Self-Employed:</strong> <span id="reviewHiredSelfEmployed"></span></p>
    
  </form>
+<script>
+    var data = {};
+    var step1 = AppFunctions.SerializeForm('step1');
+    var step2 = AppFunctions.SerializeForm('step2');
+    var step3 = AppFunctions.SerializeForm('step3');
+    var step4 = AppFunctions.SerializeForm('step4');
+    var step5 = AppFunctions.SerializeForm('step5');
+
+    AppFunctions.appendObject(data, step1);
+    AppFunctions.appendObject(data, step2);
+    AppFunctions.appendObject(data, step3);
+    AppFunctions.appendObject(data, step4);
+    AppFunctions.appendObject(data, step5);
+
+    data.Donors = Donors.value();
+    data.Partners = Partners.value();
+    data.TargetSectors = TargetSectors.value();
+</script>

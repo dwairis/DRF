@@ -1,6 +1,6 @@
 ﻿var reqInit = AppFunctions.getAjaxResponse('/RequestForm/OnCreateInit', 'GET', null);
 var Donors, Organization, Partners;
-var vmDate, validatorStep1, validatorStep2, validatorStep3, validatorStep4, validatorStep5, wizzerd;
+var vmDate, validatorStep1, validatorStep2, validatorStep3, validatorStep4, validatorStep5, wizard, ThirdPartyOrganization, Donors, Partners, TargetSectors;
 reqInit.success = function (response) {
     vmDate = response;
 
@@ -27,7 +27,11 @@ reqInit.success = function (response) {
             }, {
                 title: "Brief on Program",
                 contentUrl: "/html_pages/step2.html",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, {
+                buttons: [{
+                    name: "Prevoius", text: "Prevoius", click: function (o) {
+                        wizard.select(0);
+                    }
+                }, {
                     name: "next", text: "Next", click: function (o) {
 
                         if (validatorStep2.validate()) {
@@ -70,34 +74,51 @@ reqInit.success = function (response) {
                 }],
             }, {
                 title: "Review",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, { name: "done", text:"Submit" }],
+                buttons: [{ name: "prevoius", text: "Prevoius" }, { name: "done", text: "Submit" }],
                 contentUrl: "/html_pages/reviewsteps.html",
             }
         ],
         done: function (e) {
             e.preventDefault();
-            var form = $('#attendeeDetails').getKendoForm();
-            var talkDDLValue = $("#talk").data("kendoDropDownList").value();
-            var workshopDDLValue = $("#workshop").data("kendoDropDownList").value();
-
-            if (!form.validate()) {
-                e.sender.stepper.steps()[1].setValid(false);
-                kendo.alert("Please complete registration form");
-                e.sender.select(1);
-            } else if (talkDDLValue == "" || workshopDDLValue == "") {
-                e.sender.stepper.steps()[1].setValid(true);
-                e.sender.stepper.steps()[2].setValid(false);
-                kendo.alert("Please select the talk and workshop you want to subscribe for");
-                e.sender.select(2);
+            var isValid = true;
+            if (!validatorStep1.validate()) {
+                isValid = false;
+                wizard.select(0);
+            } else if (!validatorStep2.validate()) {
+                isValid = false;
+                wizard.select(1);
+            } else if (!validatorStep3.validate()) {
+                isValid = false;
+                wizard.select(3);
+            } else if (!validatorStep4.validate()) {
+                isValid = false;
+                wizard.select(3);
+            } else if (!validatorStep5.validate()) {
+                isValid = false;
+                wizard.select(4);
             }
-            else {
-                if (e.sender.stepper.steps()[1].options.error) {
-                    e.sender.stepper.steps()[1].setValid(true);
-                    e.sender.stepper.steps()[2].setValid(true);
-                }
 
-                kendo.alert("Thank you for registering! Registration details will be sent to your email.");
+            if (isValid) {
+                var data = {};
+                var step1 = AppFunctions.SerializeForm('step1');
+                var step2 = AppFunctions.SerializeForm('step2');
+                var step3 = AppFunctions.SerializeForm('step3');
+                var step4 = AppFunctions.SerializeForm('step4');
+                var step5 = AppFunctions.SerializeForm('step5');
+
+                AppFunctions.appendObject(data, step1);
+                AppFunctions.appendObject(data, step2);
+                AppFunctions.appendObject(data, step3);
+                AppFunctions.appendObject(data, step4);
+                AppFunctions.appendObject(data, step5);
+
+                data.Donors = Donors.value();
+                data.Partners = Partners.value();
+                data.TargetSectors = TargetSectors.value();
+
+                console.log(data)
             }
+
         },
         //select: function (e) {
         //    if (e.step.options.index == 3) {

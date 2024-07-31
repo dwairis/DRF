@@ -37,7 +37,7 @@
     var validatorSettings = AppFunctions.validatorSettings;
     validatorStep3 = $("#step3").kendoValidator(validatorSettings).data("kendoValidator");
     var ReferralDeliveryDL = $("#ReferralDeliveryDL").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd"
+        dateInput: true, format: "yyyy-MM-dd",value:new Date('2024-07-31')
     }).data("kendoDatePicker");
 
 
@@ -48,19 +48,20 @@
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
         dataSource: vmDate.targetSectorsList,
+        value:7
     }).data('kendoMultiSelect');
 
 
-    var TargetRequest = $("#TargetRequest").kendoNumericTextBox({
-        format: "#", decimals: 0, min: 0
+     TargetRequest = $("#TargetRequest").kendoNumericTextBox({
+        format: "#", decimals: 0, min: 0,value:0
     }).data("kendoNumericTextBox");
 
-    var TotalTarget = $("#TotalTarget").kendoNumericTextBox({
-        format: "#", decimals: 0, min: 0
+     TotalTarget = $("#TotalTarget").kendoNumericTextBox({
+         format: "#", decimals: 0, min: 0,value: 0
     }).data("kendoNumericTextBox");
 
-    var ReferralTotal = $("#ReferralTotal").kendoNumericTextBox({
-        format: "#", decimals: 0, min: 0
+     ReferralTotal = $("#ReferralTotal").kendoNumericTextBox({
+         format: "#", decimals: 0, min: 0, value: 0
     }).data("kendoNumericTextBox");
 
 

@@ -1,5 +1,7 @@
 ﻿using DRF.Models;
 using DRF.Repositories;
+using DRF.Utilities;
+using DRF.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRF.Controllers
@@ -27,10 +29,18 @@ namespace DRF.Controllers
                 PartnersList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.PARTNERS),
                 TargetSectorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.TARGET_SECTORS),
                 OrganizationList = organizationRepository.GetOrganizationAsDropDown(),
-                OrganizationId =1
+                OrganizationId = 1
             });
         }
-
+        [HttpPost]
+        public IActionResult OnCreatePost([FromBody] OnCreatePost model)
+        {
+            if (ModelState.IsValid)
+            {
+                return Json(new JsonResponseMessage<string>(System.Net.HttpStatusCode.OK,"created sucxcc", null));
+            }
+            return Json(new JsonResponseMessage<string>(System.Net.HttpStatusCode.BadRequest, Helper.RenderModelStateErrors(ModelState.Values.ToList()), "Invalid or missing fields!"));
+        }
         //[HttpPost]
         //public IActionResult Submit(RequestFormModel model)
         //{

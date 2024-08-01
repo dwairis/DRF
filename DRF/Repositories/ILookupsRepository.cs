@@ -8,6 +8,7 @@ namespace DRF.Repositories
     public interface ILookupsRepository : IDapperRepository<Lookups>
     {
         List<GetByCategory> GetByCategory(LookupsCategoryEnum catId);
+
     }
     public class LookupsRepository : DapperRepository<Lookups>, ILookupsRepository
     {
@@ -23,5 +24,6 @@ namespace DRF.Repositories
             
             return Query<GetByCategory>("SELECT Id as Value, Value as Text, IsActive FROM lookups where CategoryID=@CategoryID", new { CategoryID = (int)catId }, System.Data.CommandType.Text).ToList();
         }
+        
     }
 }

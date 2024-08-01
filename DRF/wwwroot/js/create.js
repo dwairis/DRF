@@ -1,6 +1,8 @@
-﻿var reqInit = AppFunctions.getAjaxResponse('/RequestForm/OnCreateInit', 'GET', null);
+﻿
+
+var reqInit = AppFunctions.getAjaxResponse('/RequestForm/OnCreateInit', 'GET', null);
 var Donors, Organization, Partners;
-var vmDate, validatorStep1, validatorStep2, validatorStep3, validatorStep4, validatorStep5, wizard, ThirdPartyOrganization, Donors, Partners, TargetSectors;
+var vmDate, validatorStep1, validatorStep2, validatorStep3, validatorStep4, validatorStep5, wizard, ThirdPartyOrganization, Donors, Partners, TargetSectors, Counterpart;
 reqInit.success = function (response) {
     vmDate = response;
 
@@ -106,6 +108,10 @@ reqInit.success = function (response) {
                 var step4 = AppFunctions.SerializeForm('step4');
                 var step5 = AppFunctions.SerializeForm('step5');
 
+                step5.ProjectEndDate= step5.ProjectEndDate == 'year-month-day' ? null : step5.ProjectEndDate;
+                step5.ProjectStartDate = step5.ProjectStartDate == 'year-month-day' ? null : step5.ProjectStartDate;
+                step5.ReferralDeliveryDL = step5.ReferralDeliveryDL == 'year-month-day' ? null : step5.ReferralDeliveryDL;
+                
                 AppFunctions.appendObject(data, step1);
                 AppFunctions.appendObject(data, step2);
                 AppFunctions.appendObject(data, step3);
@@ -116,7 +122,22 @@ reqInit.success = function (response) {
                 data.Partners = Partners.value();
                 data.TargetSectors = TargetSectors.value();
 
-                console.log(data)
+                var req = AppFunctions.getAjaxResponse('/RequestForm/OnCreatePost', 'POST', data);
+                req.success = function (response) {
+                    if (response.code == 200) {
+                        AppFunctions.showSucessMsg(response.message);
+                        setTimeout(function (o) {
+                            location.href = '/requestForm/Create';
+                        }, 2000);
+                        
+                    } else if (response.result) {
+                        AppFunctions.showErrorMsgWithDetails("Invalid or missing data", response.result);
+                    } else {
+                        AppFunctions.showErrorMsg(response.message);
+                    }
+                }
+                $.ajax(req);
+
             }
 
         },

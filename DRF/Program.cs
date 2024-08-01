@@ -2,6 +2,7 @@ using DRF.infrastructures;
 using DRF.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,11 @@ namespace DRF
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(option =>
+            {
+                option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
+                option.Filters.Add(new ResponseCacheAttribute() { NoStore = true, Location = ResponseCacheLocation.None });
+            }).AddNewtonsoftJson();
             builder.Services.AddSingleton<ISqlConnectionsFactory,SqlConnectionsFactory>();
             builder.Services.AddTransient<ILookupsRepository, LookupsRepository>();
             builder.Services.AddTransient<ILookupsCategoryRepository, LookupsCategoryRepository>();

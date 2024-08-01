@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
         <label id="lblCounterPart" for="CounterPart">Counterpart</label>
-        <input type="text" class="form-control" id="CounterPart" name="CounterPart" required>
+        <select type="text" class="form-control" id="CounterPart" name="CounterPart" required></select>
         <span class="k-invalid-msg" data-for="CounterPart" style="width:100%;display:block"></span>
     </div>
 
@@ -50,6 +50,17 @@
     ProjectEndDate = $("#ProjectEndDate").kendoDatePicker({
         dateInput: true, format: "yyyy-MM-dd"
     }).data("kendoDatePicker");
+
+    Counterpart = $('#CounterPart').kendoDropDownList({
+        optionLabel: '-- Select Organization --',
+        dataTextField: 'text',
+        select: AppFunctions.disableDropdownItem(),
+        template: AppFunctions.getDropdownItemStyle(),
+        dataValueField: 'value',
+        dataSource: vmDate.counterPartOrganizationList,
+      
+    }).data('kendoDropDownList');
+
 
 
 </script>

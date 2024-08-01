@@ -6,7 +6,7 @@
      <p><strong>Donor:</strong> <span id="reviewDonor"></span></p>
      <p><strong>Partners:</strong> <span id="reviewPartners"></span></p>
      <p><strong>Target Sectors:</strong> <span id="reviewTargetSectors"></span></p>
-     <p><strong>Brief on Program:</strong> <span id="reviewBriefProgram"></span></p>
+     <p><strong>Brief on Program:</strong>  <span id="reviewBriefProgram"></span></p>
      <p><strong>Total Target:</strong> <span id="reviewTotalTarget"></span></p>
      <p><strong>Project Start:</strong> <span id="reviewProjectStart"></span></p>
      <p><strong>Project End:</strong> <span id="reviewProjectEnd"></span></p>
@@ -38,4 +38,27 @@
     data.Donors = Donors.value();
     data.Partners = Partners.value();
     data.TargetSectors = TargetSectors.value();
+    console.log(data)
+
+    document.getElementById('reviewOrganization').textContent = data['Organization'];
+    document.getElementById('reviewProgramTitle').textContent = data['ProgramTitle'];
+    document.getElementById('reviewDonor').textContent = data['Donors'];
+    document.getElementById('reviewPartners').textContent = data['Partners'];
+    document.getElementById('reviewTargetSectors').textContent = data['TargetSectors'];
+    document.getElementById('reviewBriefProgram').textContent = data['BriefOnProgram'];
+    document.getElementById('reviewTotalTarget').textContent = data['TotalTarget'];
+    document.getElementById('reviewProjectStart').textContent = data['ProjectStartDate'];
+    document.getElementById('reviewProjectEnd').textContent = data['ProjectEndDate'];
+    document.getElementById('reviewTargetRequest').textContent = data['TargetRequest'];
+    document.getElementById('reviewCriteria').textContent = data['Criteria'];
+    document.getElementById('reviewReferralDeliveryDeadline').textContent = data['ReferralDeliveryDL'];
+    document.getElementById('reviewReferralsTotal').textContent = data['ReferralTotal'];
+    document.getElementById('reviewStatus').textContent = data['Notes'];
+    document.getElementById('reviewCounterpart').textContent = data['CounterPart'];
+    document.getElementById('reviewStatusActivityNotes').textContent = data['Notes'];
+    document.getElementById('reviewContactPerson').textContent = data['ContactPerson'];
+    document.getElementById('reviewHiredSelfEmployed').textContent = data['HiredSelfEmployed'] === 1 ? 'Yes' : 'No';
+
+
+
 </script>

@@ -13,27 +13,27 @@
 
     <div class="form-group">
         <label id="lblContactPerson" for="ContactPerson">Contact Person</label>
-        <input type="text" class="form-control" id="ContactPerson" value="ContactPerson" name="ContactPerson">
+        <input type="text" class="form-control" id="ContactPerson"  name="ContactPerson">
         <span class="k-invalid-msg" data-for="ContactPerson" style="width:100%;display:block"></span>
     </div>
     <div class="form-group">
         <label id="lblHiredSelfEmployed" for="HiredSelfEmployed">Hired/Self-Employed</label>
         <select type="number" value="1" class="form-control" id="HiredSelfEmployed" name="HiredSelfEmployed" required>
             <option value=""></option>
-            <option selected value="1">Yes</option>
+            <option value="1">Yes</option>
             <option value="0">No</option>
         </select>
         <span class="k-invalid-msg" data-for="HiredSelfEmployed" style="width:100%;display:block"></span>
     </div>
     <div class="form-group">
         <label id="lblCounterPart" for="CounterPart">Counterpart</label>
-        <input type="text" class="form-control" id="CounterPart" name="CounterPart" value="Counterpart" required>
+        <input type="text" class="form-control" id="CounterPart" name="CounterPart" required>
         <span class="k-invalid-msg" data-for="CounterPart" style="width:100%;display:block"></span>
     </div>
 
     <div class="form-group">
         <label id="lblNotes" for="Notes">Status/Activity Notes</label>
-        <textarea class="form-control" id="Notes" name="Notes" rows="3">Status/Activity Notes</textarea>
+        <textarea class="form-control" id="Notes" name="Notes" rows="3"></textarea>
         <span class="k-invalid-msg" data-for="Notes" style="width:100%;display:block"></span>
     </div>
 
@@ -43,12 +43,12 @@
     var validatorSettings = AppFunctions.validatorSettings;
     var validator3 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
     ProjectStartDate = $("#ProjectStartDate").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd",value: new Date('2024-07-31')
+        dateInput: true, format: "yyyy-MM-dd"
     }).data("kendoDatePicker");
 
     validatorStep5 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
     ProjectEndDate = $("#ProjectEndDate").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd", value: new Date('2024-07-31')
+        dateInput: true, format: "yyyy-MM-dd"
     }).data("kendoDatePicker");
 
 

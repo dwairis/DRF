@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         <label id="lblProgramTitle" for="ProgramTitle">Program Title</label>
-        <input type="text" class="form-control" id="ProgramTitle" value="Program Title" name="ProgramTitle" required>
+        <input type="text" class="form-control" id="ProgramTitle" name="ProgramTitle" required>
         <span class="k-invalid-msg" data-for="ProgramTitle" style="width:100%;display:block"></span>
     </div>
     <div class="form-group">
@@ -42,8 +42,7 @@
         select: AppFunctions.disableDropdownItem(),
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
-        dataSource: vmDate.donorsList,
-        value:6
+        dataSource: vmDate.donorsList
     }).data('kendoMultiSelect');
 
     Partners = $('#Partners').kendoMultiSelect({
@@ -52,7 +51,6 @@
         select: AppFunctions.disableDropdownItem(),
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
-        value:10,
         dataSource: vmDate.partnersList,
     }).data('kendoMultiSelect');
 

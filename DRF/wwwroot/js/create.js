@@ -28,7 +28,7 @@ reqInit.success = function (response) {
                 title: "Brief on Program",
                 contentUrl: "/html_pages/step2.html",
                 buttons: [{
-                    name: "Prevoius", text: "Prevoius", click: function (o) {
+                    name: "previous", text: "Previous", click: function (o) {
                         wizard.select(0);
                     }
                 }, {
@@ -42,7 +42,7 @@ reqInit.success = function (response) {
             }, {
                 title: "Target",
                 contentUrl: "/html_pages/step3.html",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, {
+                buttons: [{ name: "previous", text: "Previous" }, {
                     name: "next", text: "Next", click: function (o) {
 
                         if (validatorStep3.validate()) {
@@ -53,7 +53,7 @@ reqInit.success = function (response) {
             }, {
                 title: "Criteria",
                 contentUrl: "/html_pages/step4.html",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, {
+                buttons: [{ name: "previous", text: "Previous" }, {
                     name: "next", text: "Next", click: function (o) {
 
                         if (validatorStep4.validate()) {
@@ -64,7 +64,7 @@ reqInit.success = function (response) {
             }, {
                 title: "Timeline",
                 contentUrl: "/html_pages/step5.html",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, {
+                buttons: [{ name: "previous", text: "Previous" }, {
                     name: "next", text: "Next", click: function (o) {
 
                         if (validatorStep5.validate()) {
@@ -74,7 +74,7 @@ reqInit.success = function (response) {
                 }],
             }, {
                 title: "Review",
-                buttons: [{ name: "prevoius", text: "Prevoius" }, { name: "done", text: "Submit" }],
+                buttons: [{ name: "previous", text: "Previous" }, { name: "done", text: "Submit" }],
                 contentUrl: "/html_pages/reviewsteps.html",
             }
         ],

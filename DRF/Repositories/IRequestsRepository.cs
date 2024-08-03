@@ -8,7 +8,7 @@ namespace DRF.Repositories
 {
     public interface IRequestsRepository : IDapperRepository<Requests>
     {
-        List<RequestViewModel> GetAllRequests();
+        IEnumerable<RequestViewModel> GetAllRequests();
         RequestDetailViewModel GetRequestDetailsById(int id);
     }
 
@@ -22,10 +22,11 @@ namespace DRF.Repositories
             this.sqlConnectionsFactory = sqlConnectionsFactory;
         }
 
-        public List<RequestViewModel> GetAllRequests()
+        public IEnumerable<RequestViewModel> GetAllRequests()
         {
-            return Query<RequestViewModel>("SELECT Id, ProgramTitle, ProjectStartDate, ProjectEndDate FROM Requests",null,System.Data.CommandType.Text).ToList();
+            return Query<RequestViewModel>("SELECT Id as id, ProgramTitle as programTitle, ProjectStartDate as projectStartDate, ProjectEndDate as projectEndDate FROM Requests",null,System.Data.CommandType.Text).ToList();
         }
+
 
         public RequestDetailViewModel GetRequestDetailsById(int id)
         {

@@ -2,7 +2,7 @@
 {
     public class RequestViewModel
     {
-        public int RequestId { get; set; }
+        public int Id { get; set; }
         public string ProgramTitle { get; set; }
         public DateTime ProjectStartDate { get; set; }
         public DateTime ProjectEndDate { get; set; }

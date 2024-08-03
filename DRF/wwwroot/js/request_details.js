@@ -1,5 +1,4 @@
-﻿// Get the request ID from the URL
-var requestId = window.location.pathname.split('/').pop();
+﻿var requestId = window.location.pathname.split('/').pop();
 
 var reqInit = AppFunctions.getAjaxResponse('/Requests/GetRequestDetails/' + requestId, 'GET', null);
 

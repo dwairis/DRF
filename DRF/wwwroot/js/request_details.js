@@ -18,7 +18,7 @@ reqInit.success = function (response) {
             }
         }
     });
-    
+
     $("#request-details-grid").kendoGrid({
         dataSource: dataSource,
         height: 550,

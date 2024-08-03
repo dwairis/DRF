@@ -80,6 +80,22 @@
                 <div id="timeline"></div>
             </div>
         </div>
+
+        <!-- Data Tab -->
+        <div class="tab-pane fade" id="data-upload" role="tabpanel" aria-labelledby="data-tab">
+            <div class="p-3">
+                <h5>Upload Data File</h5>
+                <form id="dataUploadForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="dataFile" class="form-label">Select a file to upload:</label>
+                        <input class="form-control" type="file" id="dataFile" name="dataFile" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+                <div id="uploadResult" class="mt-3"></div>
+            </div>
+        </div>
+
     </div>
 </div>
 

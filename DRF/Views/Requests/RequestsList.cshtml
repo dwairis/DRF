@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DRF.ViewModels.RequestViewModel>
+
+@{
+    ViewData["Title"] = "Submitted Requests";
+}
+
+<div class="container mt-4">
+    <div id="requests-grid"></div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/requests.js" asp-append-version="true"></script>
+}

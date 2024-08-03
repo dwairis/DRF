@@ -35,6 +35,8 @@ namespace DRF
             builder.Services.AddTransient<IRequestUpdatesRepository, RequestUpdatesRepository>();
             builder.Services.AddTransient<IUploadedDataRepository, UploadedDataRepository>();
             builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+            builder.Services.AddTransient<IRequestsRepository, RequestsRepository>();
+
 
             // Configure Entity Framework and add ApplicationDbContext
 
@@ -66,6 +68,21 @@ namespace DRF
                 name: "requestForm",
                 pattern: "RequestForm/{action=Index}/{id?}",
                 defaults: new { controller = "RequestForm" });
+
+            app.MapControllerRoute(
+                 name: "viewRequests",
+                 pattern: "viewRequests/{id?}",
+                 defaults: new { controller = "Requests", action = "RequestsList" }
+             );
+
+
+            app.MapControllerRoute(
+                name: "requestDetails",
+                pattern: "requestDetails/{id?}",
+                defaults: new { controller = "Requests", action = "Details" }
+            );
+
+
 
             app.Run();
         }

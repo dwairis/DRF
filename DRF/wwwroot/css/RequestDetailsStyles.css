@@ -1,0 +1,20 @@
+﻿body {
+}
+/* Custom styles for specific tabs */
+.nav-link.tab-blue {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+}
+
+    .nav-link.tab-blue.active {
+        background-color: #0056b3; /* Darker blue for active state */
+    }
+
+.nav-link.tab-yellow {
+    background-color: #ffc107; /* Bootstrap warning yellow */
+    color: black;
+}
+
+    .nav-link.tab-yellow.active {
+        background-color: #d39e00; /* Darker yellow for active state */
+    }

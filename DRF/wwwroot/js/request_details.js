@@ -8,7 +8,7 @@ reqInit.success = function (response) {
         schema: {
             model: {
                 fields: {
-                    RequestId: { type: "number" },
+                    Id: { type: "number" },
                     ProgramTitle: { type: "string" },
                     ProjectStartDate: { type: "date" },
                     ProjectEndDate: { type: "date" },

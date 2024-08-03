@@ -36,6 +36,8 @@ namespace DRF
             builder.Services.AddTransient<IUploadedDataRepository, UploadedDataRepository>();
             builder.Services.AddTransient<IUsersRepository, UsersRepository>();
             builder.Services.AddTransient<IRequestsRepository, RequestsRepository>();
+            builder.Services.AddTransient<IRequestUpdatesRepository, RequestUpdatesRepository>();
+
 
 
             // Configure Entity Framework and add ApplicationDbContext

@@ -1,12 +1,14 @@
 ﻿using DRF.infrastructures;
 using DRF.Models;
 using DRF.Utilities;
+using DRF.ViewModels;
 
 namespace DRF.Repositories
 {
     public interface IRequestUpdatesRepository : IDapperRepository<RequestUpdates>
     {
-        
+        IEnumerable<RequestUpdate> GetRequestUpdates(int requestId);
+
     }
     public class RequestUpdatesRepository : DapperRepository<RequestUpdates>, IRequestUpdatesRepository
     {
@@ -17,6 +19,11 @@ namespace DRF.Repositories
             this.sqlConnectionsFactory = sqlConnectionsFactory;
         }
 
-      
+        public IEnumerable<RequestUpdate> GetRequestUpdates(int requestId)
+        {
+            return Query<RequestUpdate>(@"SELECT Id, RequestId, Update, CreatedBy, CreatedAt FROM RequestUpdates WHERE RequestId = @RequestId", new { RequestId = requestId }, System.Data.CommandType.Text);
+        }
+
+
     }
 }

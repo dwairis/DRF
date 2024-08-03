@@ -24,22 +24,48 @@ namespace DRF.Repositories
 
         public IEnumerable<RequestViewModel> GetAllRequests()
         {
-            return Query<RequestViewModel>("SELECT Id as id, ProgramTitle as programTitle, ProjectStartDate as projectStartDate, ProjectEndDate as projectEndDate FROM Requests",null,System.Data.CommandType.Text).ToList();
+            return Query<RequestViewModel>("SELECT Id as id, ProgramTitle as programTitle, ProjectStartDate as projectStartDate, ProjectEndDate as projectEndDate,ThirdPartyOrganization, CurrentStatus FROM Requests", null,System.Data.CommandType.Text).ToList();
         }
 
 
         public RequestDetailViewModel GetRequestDetailsById(int id)
         {
-            var requestFromDb = Query<RequestDetailViewModel>("SELECT * FROM Requests WHERE Id = @Id", new { Id = id },System.Data.CommandType.Text).FirstOrDefault();
+            var requestDetail = Query<RequestDetailViewModel>(
+                @"SELECT 
+                Id, 
+                ThirdPartyOrganization, 
+                ProgramTitle, 
+                BriefOnProgram, 
+                TotalTarget, 
+                TargetRequest, 
+                ProjectStartDate, 
+                ProjectEndDate, 
+                Criteria, 
+                ReferralDeliveryDL, 
+                ReferralTotal, 
+                CounterPart, 
+                ContactPerson, 
+                CurrentStatus, 
+                DataFileUrl, 
+                CreatedBy, 
+                CreatedAt, 
+                HiredSelfEmployed 
+                FROM Requests 
+                WHERE Id = @Id",
+                new { Id = id },
+                System.Data.CommandType.Text
+            ).FirstOrDefault();
 
-            if (requestFromDb != null)
+            if (requestDetail != null)
             {
-                requestFromDb.Partners = Query<string>("SELECT PartnerId FROM RequestPartners WHERE Id = @Id", new { Id = id },System.Data.CommandType.Text).ToList();
+                requestDetail.Partners = Query<int>("SELECT PartnerId FROM RequestPartners WHERE RequestId = @Id",new { Id = id },System.Data.CommandType.Text).ToList();
 
-                requestFromDb.Donors = Query<string>("SELECT DonorId FROM RequestDonors WHERE Id = @Id", new { Id = id }, System.Data.CommandType.Text).ToList();
+                requestDetail.Donors = Query<int>( "SELECT DonorId FROM RequestDonors WHERE RequestId = @Id", new { Id = id },System.Data.CommandType.Text).ToList();
             }
 
-            return requestFromDb;
+            return requestDetail;
         }
+
+
     }
 }

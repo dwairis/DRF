@@ -1,7 +1,6 @@
 ﻿var reqInit = AppFunctions.getAjaxResponse('/Requests/GetRequests', 'GET', null);
 
 reqInit.success = function (response) {
-    // Check the response structure in the console
     console.log("Response Data: ", response);
 
     var dataSource = new kendo.data.DataSource({
@@ -12,7 +11,9 @@ reqInit.success = function (response) {
                     id: { type: "number" },
                     programTitle: { type: "string" },
                     projectStartDate: { type: "date" },
-                    projectEndDate: { type: "date" }
+                    projectEndDate: { type: "date" },
+                    thirdPartyOrganization: { type: "string" },
+                    currentStatus: { type: "string" }  
                 }
             }
         },
@@ -29,6 +30,8 @@ reqInit.success = function (response) {
             { field: "programTitle", title: "Program Title", width: "200px" },
             { field: "projectStartDate", title: "Start Date", format: "{0:MM/dd/yyyy}", width: "150px" },
             { field: "projectEndDate", title: "End Date", format: "{0:MM/dd/yyyy}", width: "150px" },
+            { field: "thirdPartyOrganization", title: "Third Party Org", width: "200px" },
+            { field: "currentStatus", title: "Current Status", width: "150px" },
             { command: { text: "View Details", click: viewDetails }, title: " ", width: "150px" }
         ]
     });
@@ -46,5 +49,4 @@ reqInit.success = function (response) {
     }
 };
 
-// Execute the AJAX request
 $.ajax(reqInit);

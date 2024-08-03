@@ -6,5 +6,7 @@
         public string ProgramTitle { get; set; }
         public DateTime ProjectStartDate { get; set; }
         public DateTime ProjectEndDate { get; set; }
+        public string ThirdPartyOrganization { get; set; }
+        public string CurrentStatus { get; set; }
     }
 }

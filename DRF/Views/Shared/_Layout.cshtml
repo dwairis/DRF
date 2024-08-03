@@ -4,12 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DRF</title>
-@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
- *@   
     <!-- Main Page Styling-->
     <link href="~/css/allmin.css" rel="stylesheet" />
     <!-- Fonts-->
-    @* <link href="~css/fontAwesome.css" rel="stylesheet" type="text/css" /> *@
     <link href="~/css/fontawesome-free - Copy/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Form Styling -->
@@ -46,34 +43,29 @@
                 </a>
             </li>
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-            <!-- Nav Item - form -->
+            <!-- Nav Item - Form -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/requestForm/Create">
+                    <!-- Updated URL -->
                     <i class="fas fa-fw fa-file-alt"></i>
                     <span>Form</span>
                 </a>
             </li>
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-            <!-- Nav Item - form -->
+            <!-- Nav Item - Submitted Requests -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/viewRequests">
+                    <!-- Updated URL -->
                     <i class="fas fa-fw fa-table"></i>
                     <span>Submitted Requests</span>
                 </a>
             </li>
-
-
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -98,7 +90,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -126,9 +117,6 @@
                                 </form>
                             </div>
                         </li>
-
-                        
-
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -210,11 +198,7 @@
         </div>
     </div>
 
-  
-
-  
-
-
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/kendo/2023/kendo.all.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -222,12 +206,11 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/scripts.js"></script>
     <script src="~/js/appfunctions.js"></script>
-    <!-- Core pluin JS-->
+    <!-- Core plugin JS-->
     <script src="~/js/coreplugin.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/js/adminminjs.js"></script>
 
-
     @await RenderSectionAsync("Scripts", required: false)
-    </body>
+</body>
 </html>

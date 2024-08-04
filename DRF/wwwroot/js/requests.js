@@ -43,7 +43,7 @@ reqInit.success = function (response) {
             repeatHeaders: true,
             scale: 0.8
         },
-        columns: [
+        columns: [ //values
             { field: "id", title: "ID", width: "60px" },
             { field: "programTitle", title: "Program Title", width: "200px" },
             { field: "projectStartDate", title: "Start Date", format: "{0:MM/dd/yyyy}", width: "100px" },

@@ -29,55 +29,76 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link tab-yellow" id="data-tab" data-bs-toggle="tab" data-bs-target="#data-upload" type="button" role="tab" aria-controls="data-upload" aria-selected="false">Data</button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link tab-yellow" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Status and Activity Notes</button>
+        </li>
     </ul>
 
     <div class="tab-content" id="requestDetailsTabsContent">
         <!-- Overview Tab -->
         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
             <div class="p-3">
-                <p><strong>Request ID:</strong> @Model.Id</p>
+
                 <p><strong>Third Party Organization:</strong> @Model.ThirdPartyOrganization</p>
                 <p><strong>Program Title:</strong> @Model.ProgramTitle</p>
-                <p><strong>Brief on Program:</strong> @Model.BriefOnProgram</p>
-                <p><strong>Total Target:</strong> @Model.TotalTarget</p>
-                <p><strong>Target Request:</strong> @Model.TargetRequest</p>
+
+                <p><strong>Donors:</strong> @Model.Donors</p>
+                <p><strong>Partners:</strong> @Model.Partners</p>
+                <p><strong>Request ID:</strong> @Model.Id</p>
+               
             </div>
         </div>
 
         <!-- Project Details Tab -->
         <div class="tab-pane fade" id="project" role="tabpanel" aria-labelledby="project-tab">
             <div class="p-3">
-                <p><strong>Project Start Date:</strong> @Model.ProjectStartDate?.ToString("yyyy-MM-dd")</p>
-                <p><strong>Project End Date:</strong> @Model.ProjectEndDate?.ToString("yyyy-MM-dd")</p>
-                <p><strong>Referral Delivery Deadline:</strong> @Model.ReferralDeliveryDL?.ToString("yyyy-MM-dd")</p>
-                <p><strong>Referral Total:</strong> @Model.ReferralTotal</p>
-                <p><strong>Counterpart:</strong> @Model.CounterPart</p>
-                <p><strong>Contact Person:</strong> @Model.ContactPerson</p>
+                <p><strong>Brief on Program:</strong> @Model.BriefOnProgram</p>
+
+                
             </div>
         </div>
 
         <!-- Criteria Tab -->
         <div class="tab-pane fade" id="criteria" role="tabpanel" aria-labelledby="criteria-tab">
             <div class="p-3">
-                <p>@Model.Criteria</p>
+                <p><strong>Total Target:</strong> @Model.TotalTarget</p>
+                <p><strong>Target Request:</strong> @Model.TargetRequest</p>
+                <p><strong>Referral Delivery Deadline:</strong> @Model.ReferralDeliveryDL?.ToString("yyyy-MM-dd")</p>
+                <p><strong>Referral Total:</strong> @Model.ReferralTotal</p>
             </div>
         </div>
 
         <!-- Metadata Tab -->
         <div class="tab-pane fade" id="meta" role="tabpanel" aria-labelledby="meta-tab">
             <div class="p-3">
-                <p><strong>Current Status:</strong> @Model.CurrentStatus</p>
-                <p><strong>Data File URL:</strong> <a href="@Model.DataFileUrl" target="_blank">@Model.DataFileUrl</a></p>
-                <p><strong>Created By:</strong> @Model.CreatedBy</p>
-                <p><strong>Created At:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd")</p>
-                <p><strong>Hired Self-Employed:</strong> @(Model.HiredSelfEmployed == 1 ? "Yes" : "No")</p>
+                <p><strong>Criteria :</strong> @Model.Criteria</p>
+
             </div>
         </div>
 
         <!-- Timeline Tab -->
         <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
             <div class="p-3">
-                <div id="timeline"></div>
+
+                <p><strong>Project Start Date:</strong> @Model.ProjectStartDate?.ToString("yyyy-MM-dd")</p>
+                <p><strong>Project End Date:</strong> @Model.ProjectEndDate?.ToString("yyyy-MM-dd")</p>
+                <p><strong>Contact Person:</strong> @Model.ContactPerson</p>
+                <p><strong>Hired Self-Employed:</strong> @(Model.HiredSelfEmployed == 1 ? "Yes" : "No")</p>
+                <p><strong>Counterpart:</strong> @Model.CounterPart</p>                
+            </div>
+        </div>
+
+
+        <!--Status and Activity Notes Tab -->
+        <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="meta-tab">
+            <div class="p-3">
+
+
+                <p><strong>Current Status:</strong> @Model.CurrentStatus</p>
+                <p><strong>Data File URL:</strong> <a href="@Model.DataFileUrl" target="_blank">@Model.DataFileUrl</a></p>
+                <p><strong>Created By:</strong> @Model.CreatedBy</p>
+                <p><strong>Created At:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd")</p>
+
             </div>
         </div>
 
@@ -109,7 +130,4 @@
             event.relatedTarget
         })
     });
-
-    // Call the function from RequestUpdates.js
-    // initializeKendoTimeline(@Model.Id);
 </script>

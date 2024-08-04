@@ -1,20 +1,16 @@
-﻿body {
-}
-/* Custom styles for specific tabs */
-.nav-link.tab-blue {
-    background-color: #007bff; /* Bootstrap primary blue */
+﻿#tabstrip .k-tabstrip-items .k-item {
+    background-color: #007bff; /* Primary color */
+    border: none;
     color: white;
+    padding: 10px 20px;
 }
 
-    .nav-link.tab-blue.active {
-        background-color: #0056b3; /* Darker blue for active state */
+    #tabstrip .k-tabstrip-items .k-item.k-state-active {
+        background-color: #0056b3; /* Active state color */
     }
 
-.nav-link.tab-yellow {
-    background-color: #ffc107; /* Bootstrap warning yellow */
-    color: black;
+#tabstrip .k-content {
+    border: 1px solid #007bff;
+    padding: 20px;
+    border-top: none;
 }
-
-    .nav-link.tab-yellow.active {
-        background-color: #d39e00; /* Darker yellow for active state */
-    }

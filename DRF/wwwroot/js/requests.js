@@ -13,7 +13,7 @@ reqInit.success = function (response) {
                     projectStartDate: { type: "date" },
                     projectEndDate: { type: "date" },
                     thirdPartyOrganization: { type: "string" },
-                    currentStatus: { type: "string" }  
+                    currentStatus: { type: "string" }
                 }
             }
         },
@@ -25,14 +25,32 @@ reqInit.success = function (response) {
         height: 550,
         sortable: true,
         pageable: true,
+        filterable: true,
+        reorderable: true,
+        resizable: true,
+        width: "100%",
+        toolbar: ["search", "excel", "pdf"],
+        excel: {
+            fileName: "Request_Export.xlsx",
+            filterable: true
+        },
+        pdf: {
+            allPages: true,
+            avoidLinks: true,
+            paperSize: "A4",
+            margin: { top: "2cm", left: "1cm", right: "1cm", bottom: "1cm" },
+            landscape: true,
+            repeatHeaders: true,
+            scale: 0.8
+        },
         columns: [
-            { field: "id", title: "ID", width: "50px" },
+            { field: "id", title: "ID", width: "60px" },
             { field: "programTitle", title: "Program Title", width: "200px" },
-            { field: "projectStartDate", title: "Start Date", format: "{0:MM/dd/yyyy}", width: "150px" },
-            { field: "projectEndDate", title: "End Date", format: "{0:MM/dd/yyyy}", width: "150px" },
-            { field: "thirdPartyOrganization", title: "Third Party Org", width: "200px" },
-            { field: "currentStatus", title: "Current Status", width: "150px" },
-            { command: { text: "View Details", click: viewDetails }, title: " ", width: "150px" }
+            { field: "projectStartDate", title: "Start Date", format: "{0:MM/dd/yyyy}", width: "100px" },
+            { field: "projectEndDate", title: "End Date", format: "{0:MM/dd/yyyy}", width: "100px" },
+            { field: "thirdPartyOrganization", title: "Organization", width: "200px" },
+            { field: "currentStatus", title: "Current Status", width: "100px" },
+            { command: { text: "View Details", click: viewDetails }, title: " ", width: "100px" }
         ]
     });
 
@@ -47,6 +65,7 @@ reqInit.success = function (response) {
             console.error("ID not found!");
         }
     }
+
 };
 
 $.ajax(reqInit);

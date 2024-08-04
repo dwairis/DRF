@@ -21,9 +21,10 @@ namespace DRF.Repositories
 
         public IEnumerable<RequestUpdate> GetRequestUpdates(int requestId)
         {
-
-            return Query<RequestUpdate>("SELECT RequestId, Update, CreatedBy, CreatedAt, Id  FROM RequestUpdates WHERE RequestId = @RequestId", new { RequestId = requestId }, System.Data.CommandType.Text);
+            // update the query to be @RequestID
+            return Query<RequestUpdate>("SELECT * FROM RequestUpdates WHERE RequestId = @RequestId", new { RequestId = requestId }, System.Data.CommandType.Text);
         }
+
 
     }
 }

@@ -47,16 +47,19 @@ namespace DRF.Controllers
             return Json(requestDetails);
         }
 
-        public IActionResult GetRequestUpdates(int requestId)
+        [HttpGet]
+        public IActionResult GetRequestUpdates(int id)
         {
-            var updates = requestUpdatesRepository.GetRequestUpdates(requestId);
+            var updates = requestUpdatesRepository.GetRequestUpdates(id).ToList();
 
             if (updates == null || !updates.Any())
             {
-                return NotFound(new { message = "No updates found for this request." });
+                return Json(new { success = false, message = "No updates found for this request." });
             }
 
             return Json(updates);
         }
+
+
     }
 }

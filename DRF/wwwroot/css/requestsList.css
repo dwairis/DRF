@@ -1,0 +1,104 @@
+﻿/* General body and layout styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+.k-grid-header {
+    color: #333;
+    font-weight: normal; /* Changed from bold to normal */
+    text-align: center;
+    background-color: #e8e8e8;
+}
+
+/* Ensure the grid container fits its content */
+#example {
+    width: auto; /* Adjusted to auto to fit content size */
+    max-width: 100%; /* Ensures it doesn't exceed the viewport width */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+/* Unified button styling across the application */
+.k-button {
+    background-color: #4e73df;
+    border: none;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+    .k-button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+/* Specific adjustments for toolbar */
+.k-grid-toolbar {
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+    .k-grid-toolbar .k-button {
+        margin-left: 5px;
+    }
+
+/* Status column customization */
+.status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+}
+
+/* Different colors for statuses for quick identification */
+.status-new {
+    background-color: #6c757d;
+}
+
+.status-submitted {
+    background-color: #ffc107;
+    color: #343a40;
+}
+
+.status-inprogress {
+    background-color: #17a2b8;
+}
+
+.status-approved {
+    background-color: #28a745;
+}
+
+.status-rejected {
+    background-color: #dc3545;
+}
+
+.status-done {
+    background-color: #007bff;
+}
+
+.status-default {
+    background-color: #6c757d;
+}
+
+/* Enhancing mobile responsiveness */
+@media (max-width: 768px) {
+    .k-grid-toolbar .k-button {
+        padding: 4px 8px;
+        font-size: 0.875rem; /* Adjust size on smaller screens */
+    }
+}

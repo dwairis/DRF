@@ -18,6 +18,8 @@ namespace DRF.ViewModels
 
         public List<int> Partners { get; set; }
 
+        public List<int> TargetSectors { get; set; }
+
         [Required(ErrorMessage = "Target Request is required.")]
         [Range(0, int.MaxValue, ErrorMessage = "Target Request must be a positive number.")]
         public int? TargetRequest { get; set; }

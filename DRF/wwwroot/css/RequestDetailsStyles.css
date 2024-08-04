@@ -1,16 +1,25 @@
-﻿#tabstrip .k-tabstrip-items .k-item {
+﻿#details-wizard .k-content {
+    min-height: 300px; /* Adjust as needed for your content */
+    padding: 20px;
+}
+
+#details-wizard .k-tabstrip-items .k-item {
     background-color: #007bff; /* Primary color */
     border: none;
     color: white;
     padding: 10px 20px;
 }
 
-    #tabstrip .k-tabstrip-items .k-item.k-state-active {
+    #details-wizard .k-tabstrip-items .k-item.k-state-active {
         background-color: #0056b3; /* Active state color */
     }
 
-#tabstrip .k-content {
-    border: 1px solid #007bff;
-    padding: 20px;
-    border-top: none;
+#details-wizard .k-step-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+#details-wizard .k-step-content strong {
+    color: #333;
 }

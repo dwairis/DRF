@@ -1,25 +1,101 @@
-﻿#details-wizard .k-content {
-    min-height: 300px; /* Adjust as needed for your content */
+﻿.wizard .card {
+    margin-bottom: 20px;
+}
+
+.wizard .card-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+}
+
+.wizard .card-body {
     padding: 20px;
 }
 
-#details-wizard .k-tabstrip-items .k-item {
-    background-color: #007bff; /* Primary color */
-    border: none;
-    color: white;
-    padding: 10px 20px;
+.wizard .card p {
+    margin-bottom: 10px;
+    font-size: 16px;
 }
 
-    #details-wizard .k-tabstrip-items .k-item.k-state-active {
-        background-color: #0056b3; /* Active state color */
+#timeline-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f4f4f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.k-timeline-item {
+    margin-bottom: 10px;
+}
+
+    .k-timeline-item .k-timeline-bullet {
+        background-color: #007bff;
     }
 
-#details-wizard .k-step-content p {
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 5px 0;
+    .k-timeline-item .k-timeline-title {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .k-timeline-item .k-timeline-date {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+
+.data-upload {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-#details-wizard .k-step-content strong {
-    color: #333;
+    .data-upload h4 {
+        margin-bottom: 10px;
+    }
+
+
+.activity-notes {
+    margin-top: 20px;
+}
+
+.comment-box {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.box-content {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.box {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px;
+}
+
+    .box h4 {
+        margin-bottom: 15px;
+    }
+
+.comment-box {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+textarea.form-control {
+    width: 100%;
+    margin-top: 10px;
 }

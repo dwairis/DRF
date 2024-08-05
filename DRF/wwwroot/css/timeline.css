@@ -1,0 +1,87 @@
+﻿/* timeline.css */
+
+/* Timeline styles */
+.timeline {
+    position: relative;
+    margin: 30px 0;
+    padding: 10px 0;
+    list-style: none;
+}
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #e9ecef;
+        left: 50%;
+        margin-left: -2px;
+    }
+
+.timeline-item {
+    position: relative;
+    margin: 10px 0;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+    .timeline-item.left {
+        left: 0;
+    }
+
+    .timeline-item.right {
+        left: 50%;
+    }
+
+    .timeline-item .timeline-content {
+        position: relative;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-item .timeline-title {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .timeline-item .timeline-date {
+        font-size: 0.9em;
+        color: #6c757d;
+    }
+
+    .timeline-item .timeline-author {
+        font-size: 0.9em;
+        color: #343a40;
+    }
+
+    .timeline-item.primary .timeline-content {
+        background: #d1ecf1;
+        border-color: #bee5eb;
+    }
+
+    .timeline-item.success .timeline-content {
+        background: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .timeline-item.danger .timeline-content {
+        background: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .timeline-item.warning .timeline-content {
+        background: #fff3cd;
+        border-color: #ffeeba;
+    }
+
+    .timeline-item.info .timeline-content {
+        background: #cce5ff;
+        border-color: #b8daff;
+    }
+
+    .timeline-item .timeline-content {
+        border: 1px solid #dae0e5;
+    }

@@ -7,6 +7,10 @@
         type: 'GET',
         success: function (response) {
             initializeWizard(response);
+            initializeBootstrapTimeline(requestId); // Initialize the Bootstrap timeline with request updates
+        },
+        error: function () {
+            alert("Failed to load request details. Please try again.");
         }
     });
 
@@ -85,15 +89,21 @@
     }
 
     function generateWorkflowContent(model) {
-        return `<div id="timeline-container"></div>`;
+        // Use the new timeline HTML file to show the timeline
+        return `
+            <div class="timeline">
+                <ul id="workflow-timeline">
+                    <!-- Timeline items will be dynamically added here by JavaScript -->
+                </ul>
+            </div>`;
     }
 
     function generateDataContent(model) {
         return `
-         <div class="data-upload">
-            <h4>Upload Data File</h4>
-            <input name="files" id="dataFileUpload" type="file" />
-        </div>,
+            <div class="data-upload">
+                <h4>Upload Data File</h4>
+                <input name="files" id="dataFileUpload" type="file" />
+            </div>,
             ${generateBoxedContent('Current Status', model.currentStatus)}
             ${generateBoxedContent('Data File URL', `<a href="${model.dataFileUrl}" target="_blank">${model.dataFileUrl}</a>`)}
             ${generateBoxedContent('Created By', model.createdBy)}
@@ -104,31 +114,27 @@
     function generateNotesContent(model) {
         return `<div class="activity-notes box-content">
                     <h4>Status and Activity Notes</h4>
-                    <div class="box"><strong>Current Status:</strong> <span>${model.CurrentStatus}</span></div>
-                    <div class="box"><strong>Data File URL:</strong> <span><a href="${model.DataFileUrl}" target="_blank">${model.DataFileUrl}</a></span></div>
-                    <div class="box"><strong>Created By:</strong> <span>${model.CreatedBy}</span></div>
-                    <div class="box"><strong>Created At:</strong> <span>${model.CreatedAt}</span></div>
+                    <div class="box"><strong>Current Status:</strong> <span>${model.currentStatus}</span></div>
+                    <div class="box"><strong>Data File URL:</strong> <span><a href="${model.dataFileUrl}" target="_blank">${model.dataFileUrl}</a></span></div>
+                    <div class="box"><strong>Created By:</strong> <span>${model.createdBy}</span></div>
+                    <div class="box"><strong>Created At:</strong> <span>${model.createdAt}</span></div>
                     <div class="comment-box">
                         <h5>Add a Comment</h5>
                         <textarea id="comment" class="form-control" rows="4" placeholder="Enter your comment here..."></textarea>
                         <button id="submitComment" class="btn btn-primary mt-2">Submit Comment</button>
                     </div>
                 </div>`
-        ,generateBoxedContent('Notes', model.notes ? model.notes : 'N/A');
+            , generateBoxedContent('Notes', model.notes ? model.notes : 'N/A');
     }
 
-    // Initialize Kendo Timeline with request updates
-    document.addEventListener('DOMContentLoaded', function () {
-        initializeKendoTimeline(requestId);
-    });
-
-    function initializeKendoTimeline(requestId) {
+    // Bootstrap Timeline Integration
+    function initializeBootstrapTimeline(requestId) {
         var timelineInit = AppFunctions.getAjaxResponse('/Requests/GetRequestUpdates/' + requestId, 'GET', null);
 
         timelineInit.success = function (response) {
             console.log("Timeline Data:", response);
             if (response && response.length > 0) {
-                renderTimeline(response);
+                renderBootstrapTimeline(response);
             } else {
                 console.log("No data available for the timeline.");
             }
@@ -141,23 +147,37 @@
         $.ajax(timelineInit);
     }
 
-    function renderTimeline(data) {
-        $("#timeline-container").kendoTimeline({
-            dataSource: {
-                data: data,
-                schema: {
-                    model: {
-                        fields: {
-                            date: { from: "createdAt", type: "date" },
-                            text: { from: "Update" },
-                            title: { from: "createdBy" }
-                        }
-                    }
-                }
-            },
-            alternatingMode: true,
-            collapsibleEvents: true,
-            orientation: "vertical"
+    function renderBootstrapTimeline(data) {
+        var timelineList = $("#workflow-timeline");
+        timelineList.empty();
+
+        data.forEach(function (item, index) {
+            // Assign a color based on the update type or other criteria
+            var colorClass = "primary"; // Default color
+            switch (item.update.toLowerCase()) {
+                case "needs more clarification":
+                    colorClass = "warning";
+                    break;
+                case "accepted":
+                    colorClass = "success";
+                    break;
+                case "rejected":
+                    colorClass = "danger";
+                    break;
+            }
+
+            var timelineItem = `
+                <li class="timeline-item ${colorClass}">
+                    <div class="timeline-content">
+                        <h5 class="timeline-title">${item.update}</h5>
+                        <p class="timeline-date">${new Date(item.createdAt).toLocaleDateString()}</p>
+                        <p class="timeline-author">Updated by: ${item.createdBy}</p>
+                    </div>
+                </li>`;
+
+            timelineList.append(timelineItem);
         });
     }
+
+    initializeBootstrapTimeline(requestId);
 });

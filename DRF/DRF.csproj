@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\html_pages\timeline.html" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\kendo\bootrstrapMain.css" />
   </ItemGroup>
 

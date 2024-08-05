@@ -16,31 +16,7 @@
     font-size: 16px;
 }
 
-#timeline-container {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f4f4f9;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
-.k-timeline-item {
-    margin-bottom: 10px;
-}
-
-    .k-timeline-item .k-timeline-bullet {
-        background-color: #007bff;
-    }
-
-    .k-timeline-item .k-timeline-title {
-        font-weight: 600;
-        color: #333;
-    }
-
-    .k-timeline-item .k-timeline-date {
-        font-size: 0.9em;
-        color: #666;
-    }
 
 
 .data-upload {
@@ -58,58 +34,4 @@
 
 .activity-notes {
     margin-top: 20px;
-}
-.timeline {
-    list-style: none;
-    padding: 20px 0;
-    position: relative;
-}
-
-    .timeline:before {
-        top: 0;
-        bottom: 0;
-        position: absolute;
-        content: " ";
-        width: 3px;
-        background-color: #eee;
-        left: 50%;
-        margin-left: -1.5px;
-    }
-
-.timeline-item {
-    margin-bottom: 20px;
-    position: relative;
-    clear: both;
-}
-
-    .timeline-item.left {
-        padding-right: 50%;
-    }
-
-    .timeline-item.right {
-        padding-left: 50%;
-    }
-
-.timeline-content {
-    position: relative;
-    width: 45%;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 6px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-title {
-    margin-top: 0;
-    font-weight: bold;
-}
-
-.timeline-date {
-    color: #6c757d;
-    font-size: 12px;
-}
-
-.timeline-author {
-    font-size: 14px;
-    color: #333;
 }

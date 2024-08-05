@@ -1,25 +1,46 @@
-﻿ <form id="step5">
-     <h4>Review</h4>
-     <p><strong>Organization:</strong> <span id="reviewOrganization"></span></p>
-     <p><strong>Program Title:</strong> <span id="reviewProgramTitle"></span></p>
-     <p><strong>Donor:</strong> <span id="reviewDonor"></span></p>
-     <p><strong>Partners:</strong> <span id="reviewPartners"></span></p>
-     <p><strong>Target Sectors:</strong> <span id="reviewTargetSectors"></span></p>
-     <p><strong>Brief on Program:</strong>  <span id="reviewBriefProgram"></span></p>
-     <p><strong>Total Target:</strong> <span id="reviewTotalTarget"></span></p>
-     <p><strong>Project Start:</strong> <span id="reviewProjectStart"></span></p>
-     <p><strong>Project End:</strong> <span id="reviewProjectEnd"></span></p>
-     <p><strong>Target Request:</strong> <span id="reviewTargetRequest"></span></p>
-     <p><strong>Criteria:</strong> <span id="reviewCriteria"></span></p>
-     <p><strong>Referral Delivery Deadline:</strong> <span id="reviewReferralDeliveryDeadline"></span></p>
-     <p><strong>Referrals Total:</strong> <span id="reviewReferralsTotal"></span></p>
-     <p><strong>Status:</strong> <span id="reviewStatus"></span></p>
-     <p><strong>Counterpart:</strong> <span id="reviewCounterpart"></span></p>
-     <p><strong>Status/Activity Notes:</strong> <span id="reviewStatusActivityNotes"></span></p>
-     <p><strong>Contact Person:</strong> <span id="reviewContactPerson"></span></p>
-     <p><strong>Hired/Self-Employed:</strong> <span id="reviewHiredSelfEmployed"></span></p>
-   
- </form>
+﻿<link href="../css/reviewsteps.css" rel="stylesheet" />
+
+<form id="step5">
+    <h4 class="text-center mb-4">Review</h4>
+    <div class="review-container">
+        <div class="review-card">
+            <h3 class="card-title">Program</h3> <br />
+            <p><strong>Organization:</strong> <span id="reviewOrganization"></span></p>
+            <p><strong>Program Title:</strong> <span id="reviewProgramTitle"></span></p>
+            <p><strong>Donor:</strong> <span id="reviewDonor"></span></p>
+            <p><strong>Partners:</strong> <span id="reviewPartners"></span></p>
+        </div>
+
+        <div class="review-card">
+            <h3 class="card-title">Brief on Program</h3> <br />
+            <p><strong>Brief on Program:</strong> <span id="reviewBriefProgram"></span></p>
+
+
+        </div>
+
+        <div class="review-card">
+            <h3 class="card-title">Project Timeline and Target</h3> <br />
+            <p><strong>Project Start:</strong> <span id="reviewProjectStart"></span></p>
+            <p><strong>Project End:</strong> <span id="reviewProjectEnd"></span></p>
+            <p><strong>Referral Delivery Deadline:</strong> <span id="reviewReferralDeliveryDeadline"></span></p>
+            <p><strong>Referrals Total:</strong> <span id="reviewReferralsTotal"></span></p>
+            <p><strong>Target Sectors:</strong> <span id="reviewTargetSectors"></span></p>
+            <p><strong>Total Target:</strong> <span id="reviewTotalTarget"></span></p>
+            <p><strong>Target Request:</strong> <span id="reviewTargetRequest"></span></p>
+        </div>
+
+        <div class="review-card">
+            <h3 class="card-title">Additional Information</h3> <br />
+            <p><strong>Criteria:</strong> <span id="reviewCriteria"></span></p>
+            <p><strong>Status:</strong> <span id="reviewStatus"></span></p>
+            <p><strong>Counterpart:</strong> <span id="reviewCounterpart"></span></p>
+            <p><strong>Contact Person:</strong> <span id="reviewContactPerson"></span></p>
+            <p><strong>Hired/Self-Employed:</strong> <span id="reviewHiredSelfEmployed"></span></p>
+            <p><strong>Status/Activity Notes:</strong> <span id="reviewStatusActivityNotes"></span></p>
+        </div>
+    </div>
+</form>
+
 <script>
     var data = {};
     var step1 = AppFunctions.SerializeForm('step1');
@@ -38,15 +59,16 @@
     data.Partners = Partners.value();
     data.TargetSectors = TargetSectors.value();
 
-
-    data.Donors = Donors.dataItems().map(function (item)
-        { return item.text; }).join(', ');
-    data.Partners = Partners.dataItems().map(function (item)
-        { return item.text; }).join(', ');
-    data.TargetSectors = TargetSectors.dataItems().map(function (item)
-    { return item.text; }).join(', ');
+    data.Donors = Donors.dataItems().map(function (item) {
+        return item.text;
+    }).join(', ');
+    data.Partners = Partners.dataItems().map(function (item) {
+        return item.text;
+    }).join(', ');
+    data.TargetSectors = TargetSectors.dataItems().map(function (item) {
+        return item.text;
+    }).join(', ');
     data.ThirdPartyOrganizationText = ThirdPartyOrganization.text();
-
 
     document.getElementById('reviewOrganization').textContent = data['ThirdPartyOrganizationText'];
     document.getElementById('reviewProgramTitle').textContent = data['ProgramTitle'];
@@ -66,7 +88,4 @@
     document.getElementById('reviewStatusActivityNotes').textContent = data['Notes'];
     document.getElementById('reviewContactPerson').textContent = data['ContactPerson'];
     document.getElementById('reviewHiredSelfEmployed').textContent = data['HiredSelfEmployed'] === 1 ? 'Yes' : 'No';
-
-
-
 </script>

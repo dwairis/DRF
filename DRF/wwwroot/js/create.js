@@ -110,7 +110,7 @@ reqInit.success = function (response) {
 
                 step5.ProjectEndDate= step5.ProjectEndDate == 'year-month-day' ? null : step5.ProjectEndDate;
                 step5.ProjectStartDate = step5.ProjectStartDate == 'year-month-day' ? null : step5.ProjectStartDate;
-                step5.ReferralDeliveryDL = step5.ReferralDeliveryDL == 'year-month-day' ? null : step5.ReferralDeliveryDL;
+                step3.ReferralDeliveryDL = step3.ReferralDeliveryDL == 'year-month-day' ? null : step3.ReferralDeliveryDL;
                 
                 AppFunctions.appendObject(data, step1);
                 AppFunctions.appendObject(data, step2);

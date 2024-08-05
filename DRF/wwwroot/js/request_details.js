@@ -92,7 +92,7 @@
         // Use the new timeline HTML file to show the timeline
         return `
             <div class="timeline">
-                <ul id="workflow-timeline">
+                <ul id="workflow-timeline" class="horizontal-timeline">
                     <!-- Timeline items will be dynamically added here by JavaScript -->
                 </ul>
             </div>`;
@@ -102,8 +102,8 @@
         return `
             <div class="data-upload">
                 <h4>Upload Data File</h4>
-                <input name="files" id="dataFileUpload" type="file" />
-            </div>,
+                <input name="files" id="dataFileUpload" type="file" /> 
+            </div><br>
             ${generateBoxedContent('Current Status', model.currentStatus)}
             ${generateBoxedContent('Data File URL', `<a href="${model.dataFileUrl}" target="_blank">${model.dataFileUrl}</a>`)}
             ${generateBoxedContent('Created By', model.createdBy)}
@@ -113,19 +113,19 @@
 
     function generateNotesContent(model) {
         return `<div class="activity-notes box-content">
-                    <h4>Status and Activity Notes</h4>
-                    <div class="box"><strong>Current Status:</strong> <span>${model.currentStatus}</span></div>
-                    <div class="box"><strong>Data File URL:</strong> <span><a href="${model.dataFileUrl}" target="_blank">${model.dataFileUrl}</a></span></div>
-                    <div class="box"><strong>Created By:</strong> <span>${model.createdBy}</span></div>
-                    <div class="box"><strong>Created At:</strong> <span>${model.createdAt}</span></div>
-                    <div class="comment-box">
-                        <h5>Add a Comment</h5>
-                        <textarea id="comment" class="form-control" rows="4" placeholder="Enter your comment here..."></textarea>
-                        <button id="submitComment" class="btn btn-primary mt-2">Submit Comment</button>
-                    </div>
-                </div>`
-            , generateBoxedContent('Notes', model.notes ? model.notes : 'N/A');
+                <h4>Status and Activity Notes</h4>
+                <div class="box"><strong>Current Status:</strong> <span>${model.currentStatus}</span></div>
+                <div class="box"><strong>Data File URL:</strong> <span><a href="${model.dataFileUrl}" target="_blank">${model.dataFileUrl}</a></span></div>
+                <div class="box"><strong>Created By:</strong> <span>${model.createdBy}</span></div>
+                <div class="box"><strong>Created At:</strong> <span>${model.createdAt}</span></div>
+                <div class="comment-box"> <br>
+                    <h5>Add a Comment</h5>
+                    <textarea id="comment" class="form-control" rows="4" placeholder="Enter your comment here..."></textarea>
+                    <button id="submitComment" class="btn btn-primary mt-2" disabled>Submit Comment</button>
+                </div>
+            </div>`;
     }
+
 
     // Bootstrap Timeline Integration
     function initializeBootstrapTimeline(requestId) {
@@ -158,16 +158,19 @@
                 case "needs more clarification":
                     colorClass = "warning";
                     break;
-                case "accepted":
+                case "accepted by x":
                     colorClass = "success";
                     break;
-                case "rejected":
+                case "rejected by y":
                     colorClass = "danger";
                     break;
+                default:
+                    colorClass = "info"; // Default to info if no match
             }
 
             var timelineItem = `
                 <li class="timeline-item ${colorClass}">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <h5 class="timeline-title">${item.update}</h5>
                         <p class="timeline-date">${new Date(item.createdAt).toLocaleDateString()}</p>

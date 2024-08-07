@@ -35,3 +35,12 @@
 .activity-notes {
     margin-top: 20px;
 }
+
+
+.success-msg {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}

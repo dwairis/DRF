@@ -1,7 +1,8 @@
-﻿$(document).ready(function () {
-    var requestId = window.location.pathname.split('/').pop();
+﻿var requestId;
+$(document).ready(function () {
+    requestId = window.location.pathname.split('/').pop();
     var apiUrl = '/Requests/GetRequestDetails/' + requestId;
-    var isEditable = false; // Set this variable to true or false to control editability
+    var isEditable = true; // Set this variable to true or false to control editability
 
     $.ajax({
         url: apiUrl,
@@ -38,21 +39,19 @@
             }
         });
     }
-
+    
     function generateBoxedContent(title, content, fieldName) {
-        var inputField = isEditable
-            ? `<input type="text" name="${fieldName}" value="${content}" class="form-control" />`
-            : `<input type="text" name="${fieldName}" value="${content}" class="form-control" readonly />`;
+        var inputField = isEditable ? `<input type="text" name="${fieldName}" value="${content}" class="form-control" />` : `<input type="text" name="${fieldName}" value="${content}" class="form-control" readonly />`;
 
         return `
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h5 class="mb-0">${title}</h5>
-                </div>
-                <div class="card-body">
-                    <p class="mb-0">${inputField}</p>
-                </div>
-            </div>`;
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">${title}</h5>
+            </div>
+            <div class="card-body">
+                <p class="mb-0">${inputField}</p>
+            </div>
+        </div>`;
     }
 
     function generateProgramContent(model) {
@@ -195,51 +194,56 @@
         });
     }
 
-    // Function to save changes
-    function saveChanges() {
-        // Collect the updated data from the form fields
-        var updatedData = {
-            thirdPartyOrganization: $('input[name="thirdPartyOrganization"]').val(),
-            programTitle: $('input[name="programTitle"]').val(),
-            donors: $('input[name="donors"]').val().split(', '),
-            partners: $('input[name="partners"]').val().split(', '),
-            briefOnProgram: $('input[name="briefOnProgram"]').val(),
-            targetSectors: $('input[name="targetSectors"]').val().split(', '),
-            targetRequest: $('input[name="targetRequest"]').val(),
-            totalTarget: $('input[name="totalTarget"]').val(),
-            referralDeliveryDL: $('input[name="referralDeliveryDL"]').val(),
-            referralTotal: $('input[name="referralTotal"]').val(),
-            criteria: $('input[name="criteria"]').val(),
-            projectStartDate: $('input[name="projectStartDate"]').val(),
-            projectEndDate: $('input[name="projectEndDate"]').val(),
-            contactPerson: $('input[name="contactPerson"]').val(),
-            hiredSelfEmployed: $('input[name="hiredSelfEmployed"]').is(':checked'), // Use is(':checked') for checkboxes
-            counterpart: $('input[name="counterPart"]').val(),
-            currentStatus: $('input[name="currentStatus"]').val(),
-            notes: $('input[name="notes"]').val(),
-            dataFileUrl: $('input[name="dataFileUrl"]').val(),
-            createdBy: $('input[name="createdBy"]').val(),
-            createdAt: $('input[name="createdAt"]').val()
-        };
-
-        // AJAX request to update the request details
-        var req = AppFunctions.getAjaxResponse('/Requests/UpdateRequest', 'POST', updatedData);
-
-        req.success = function (response) {
-            if (response.success) {
-                AppFunctions.showSuccessMsg("Request details updated successfully!");
-            } else {
-                AppFunctions.showErrorMsg("Failed to update request details.");
-            }
-        };
-
-        req.error = function () {
-            AppFunctions.showErrorMsg("An error occurred while updating request details.");
-        };
-
-        $.ajax(req);
-    }
+   
 
     // Initialize the Bootstrap timeline
     initializeBootstrapTimeline(requestId);
 });
+
+// Function to save changes
+function saveChanges() {
+    console.log("Save button clicked");
+    // Collect the updated data from the form fields
+    var updatedData = {
+        Id: requestId,
+        thirdPartyOrganization: $('input[name="thirdPartyOrganization"]').val(),
+        programTitle: $('input[name="programTitle"]').val(),
+        donors: $('input[name="donors"]').val().split(', '),
+        partners: $('input[name="partners"]').val().split(', '),
+        briefOnProgram: $('input[name="briefOnProgram"]').val(),
+        targetSectors: $('input[name="targetSectors"]').val().split(', '),
+        targetRequest: $('input[name="targetRequest"]').val(),
+        totalTarget: $('input[name="totalTarget"]').val(),
+        referralDeliveryDL: $('input[name="referralDeliveryDL"]').val(),
+        referralTotal: $('input[name="referralTotal"]').val(),
+        criteria: $('input[name="criteria"]').val(),
+        projectStartDate: $('input[name="projectStartDate"]').val(),
+        projectEndDate: $('input[name="projectEndDate"]').val(),
+        contactPerson: $('input[name="contactPerson"]').val(),
+        hiredSelfEmployed: $('input[name="hiredSelfEmployed"]').is(':checked'),
+        counterpart: $('input[name="counterPart"]').val(),
+        currentStatus: $('input[name="currentStatus"]').val(),
+        notes: $('input[name="notes"]').val(),
+        dataFileUrl: $('input[name="dataFileUrl"]').val(),
+        createdBy: $('input[name="createdBy"]').val(),
+        createdAt: $('input[name="createdAt"]').val()
+    };
+    console.log("Updated Data:", updatedData);
+
+    // AJAX request to update the request details
+    var req = AppFunctions.getAjaxResponse('/Requests/UpdateRequest', 'POST', updatedData);
+
+    req.success = function (response) {
+        if (response.success) {
+            AppFunctions.showSuccessMsg("Request details updated successfully!");
+        } else {
+            AppFunctions.showErrorMsg("Failed to update request details.");
+        }
+    };
+
+    req.error = function () {
+        AppFunctions.showErrorMsg("An error occurred while updating request details.");
+    };
+
+    $.ajax(req);
+}

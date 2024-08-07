@@ -60,6 +60,31 @@ namespace DRF.Controllers
             return Json(updates);
         }
 
+        [HttpPost]
+        public IActionResult UpdateRequest(RequestDetailViewModel updateModel)
+        {
+            try
+            {
+                bool isUpdated = requestsRepository.UpdateRequest(updateModel);
+
+                if (isUpdated)
+                {
+                    return Json(new { success = true, message = "Request updated successfully" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to update request" });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you can use any logging framework here)
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, new { success = false, message = "An error occurred on the server" });
+            }
+        }
+
+
 
     }
 }

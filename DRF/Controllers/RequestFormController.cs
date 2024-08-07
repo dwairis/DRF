@@ -37,7 +37,8 @@ namespace DRF.Controllers
                 TargetSectorsList = lookupsRepository.GetByCategory(Utilities.LookupsCategoryEnum.TARGET_SECTORS),
                 OrganizationList = organizationRepository.GetOrganizationAsDropDown(),
                 OrganizationId = 1,
-                CounterPartOrganizationList = organizationRepository.GetCounterPartOrganization()
+                CounterPartOrganizationList = organizationRepository.GetCounterPartOrganization(),
+                IsReadOnly = false
             });
         }
         [HttpPost]
@@ -77,14 +78,14 @@ namespace DRF.Controllers
                     requestDonorsRepository.Create(donors);
                     
                     List<RequestPartners> partners = new List<RequestPartners>();
-                    foreach (var d in model.Donors)
+                    foreach (var d in model.Partners)
                     {
                         partners.Add(new RequestPartners() { PartnerId = d, RequestId = newReq.Id, CreatedAt = Helper.Today, CreatedBy = 1 });
                     }
                     partnersRepository.Create(partners); 
                     
                     List<RequestTargetSectors> sectors = new List<RequestTargetSectors>();
-                    foreach (var d in model.Donors)
+                    foreach (var d in model.TargetSectors)
                     {
                         sectors.Add(new RequestTargetSectors() { TargetSectorsID = d, RequestId = newReq.Id, CreatedAt = Helper.Today, CreatedBy = 1 });
                     }

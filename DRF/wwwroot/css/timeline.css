@@ -1,96 +1,111 @@
-﻿/* Horizontal Timeline Styles */
+﻿/* Base styles for the timeline */
 .timeline {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    margin: 30px 0;
-    list-style: none;
-    overflow-x: auto;
-    white-space: nowrap;
     padding: 20px 0;
+    list-style: none;
+    overflow: hidden;
 }
 
-    .timeline:before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 4px;
-        background: #e9ecef;
-        z-index: 1;
-    }
-
-.timeline-item {
-    display: inline-block;
-    position: relative;
-    margin: 0 20px;
-    text-align: center;
-    z-index: 2;
-}
-
-    .timeline-item .timeline-content {
-        position: relative;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        width: 200px; /* Adjusted width for better text fitting */
-        margin-top: 30px; /* Space between the dot and card */
-        overflow: hidden;
-        white-space: normal; /* Allow text to wrap to the next line */
-    }
-
-    .timeline-item:before {
+    .timeline::before {
         content: '';
         position: absolute;
         top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #e9ecef;
         left: 50%;
-        transform: translateX(-50%);
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        z-index: 3;
-        border: 2px solid #dae0e5;
-        box-shadow: 0 0 0 3px #ffffff;
+        margin-left: -2px;
     }
 
-    .timeline-item.primary .timeline-content,
-    .timeline-item.primary:before {
-        background: #d1ecf1;
+.timeline-item {
+    position: relative;
+    margin: 0 0 20px;
+    padding-left: 90px;
+    clear: both;
+}
+
+.timeline-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    background-color: #6c757d;
+    border-radius: 50%;
+    z-index: 100;
+    transition: all 0.2s ease-in-out;
+}
+
+.timeline-panel {
+    position: relative;
+    width: 45%;
+    padding: 20px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+    .timeline-panel::after {
+        content: '';
+        display: table;
+        clear: both;
     }
 
-    .timeline-item.success .timeline-content,
-    .timeline-item.success:before {
-        background: #d4edda;
-    }
+.timeline-item:nth-child(odd) .timeline-panel {
+    float: left;
+    text-align: right;
+}
 
-    .timeline-item.danger .timeline-content,
-    .timeline-item.danger:before {
-        background: #f8d7da;
-    }
+.timeline-item:nth-child(odd) .timeline-badge {
+    left: auto;
+    right: 50%;
+    margin-right: -15px;
+}
 
-    .timeline-item.warning .timeline-content,
-    .timeline-item.warning:before {
-        background: #fff3cd;
-    }
+.timeline-item:nth-child(even) .timeline-panel {
+    float: right;
+}
 
-    .timeline-item.info .timeline-content,
-    .timeline-item.info:before {
-        background: #cce5ff;
-    }
+.timeline-heading {
+    margin-bottom: 15px;
+}
 
 .timeline-title {
-    margin-bottom: 5px;
-    font-weight: bold;
-    word-wrap: break-word; /* Break long words to fit within the box */
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
 }
 
 .timeline-date {
-    font-size: 0.9em;
-    color: #6c757d;
+    font-size: 0.85em;
+    color: #999;
+    margin-top: 5px;
 }
 
-.timeline-author {
-    font-size: 0.9em;
-    color: #343a40;
+.timeline-body {
+    margin-top: 10px;
+}
+
+.bg-primary {
+    background-color: #007bff;
+}
+
+.bg-success {
+    background-color: #28a745;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+}
+
+.text-muted {
+    color: #6c757d;
 }

@@ -27,15 +27,10 @@
     </div>
     <div class="form-group">
         <label id="lblCounterPart" for="CounterPart">Counterpart</label>
-        <select type="text" class="form-control" id="CounterPart" name="CounterPart" required></select>
+        <select type="text" class="form-control" id="CounterPart" name="CounterPart" required value="counterpartvalue"></select>
         <span class="k-invalid-msg" data-for="CounterPart" style="width:100%;display:block"></span>
     </div>
 
-    <div class="form-group">
-        <label id="lblNotes" for="Notes">Status/Activity Notes</label>
-        <textarea class="form-control" id="Notes" name="Notes" rows="3"></textarea>
-        <span class="k-invalid-msg" data-for="Notes" style="width:100%;display:block"></span>
-    </div>
 
 </form>
 
@@ -43,12 +38,12 @@
     var validatorSettings = AppFunctions.validatorSettings;
     var validator3 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
     ProjectStartDate = $("#ProjectStartDate").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd"
+        dateInput: true, format: "yyyy-MM-dd", value: data.projectStartDate, enable: !vmDate.isReadOnly,
     }).data("kendoDatePicker");
 
     validatorStep5 = $("#step4").kendoValidator(validatorSettings).data("kendoValidator");
     ProjectEndDate = $("#ProjectEndDate").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd"
+        dateInput: true, format: "yyyy-MM-dd", value: data.projectEndDate, enable: !vmDate.isReadOnly,
     }).data("kendoDatePicker");
 
     Counterpart = $('#CounterPart').kendoDropDownList({
@@ -58,8 +53,24 @@
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
         dataSource: vmDate.counterPartOrganizationList,
+        value: data.counterPart,
+        enable: !vmDate.isReadOnly,
       
     }).data('kendoDropDownList');
+    if (data.hiredSelfEmployed == true) {
+        $("#HiredSelfEmployed").val('1');
+
+        $("#HiredSelfEmployed").attr('disabled', vmDate.isReadOnly);
+    } else if (data.hiredSelfEmployed == false) {
+        $("#HiredSelfEmployed").val('0');
+        $("#HiredSelfEmployed").attr('disabled', vmDate.isReadOnly);
+    }
+
+
+    $("#ContactPerson").val(data.contactPerson);
+    $("#ContactPerson").attr('disabled', vmDate.isReadOnly);
+
+    
 
 
 

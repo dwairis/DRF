@@ -1,13 +1,13 @@
-﻿@model int
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model int
 
 @{
     ViewData["Title"] = "Request Details";
 }
-<style>
-    button[data-wizard-next], button[data-wizard-reset], button[data-wizard-previous], button[data-wizard-done] {
-        display:none;
-    }
-</style>
 
 <link href="~/css/timeline.css" rel="stylesheet" />
 <link href="~/css/requestdetailsstyles.css" rel="stylesheet" />
@@ -19,12 +19,11 @@
 
 
 @section Scripts {
-   @*  <script src="~/js/request_details.js"></script>
+    @*  <script src="~/js/request_details.js"></script>
     <script src="~/js/requestupdates.js"></script> *@
 
-   
+    <script src="~/js/request_details_2.js"></script>
     <script>
         var requestId = '@Model';
     </script>
-    <script src="~/js/request_details_2.js"></script>
 }

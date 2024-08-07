@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\request_details_2.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\html_pages\timeline.html" />
-    <_ContentIncludedByDefault Remove="wwwroot\html_pages\updatbaleFormView.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\request_details_2.js" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\kendo\bootrstrapMain.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\request_details_2.js" />
   </ItemGroup>
 
   <ItemGroup>

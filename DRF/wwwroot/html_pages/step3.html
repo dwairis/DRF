@@ -37,7 +37,7 @@
     var validatorSettings = AppFunctions.validatorSettings;
     validatorStep3 = $("#step3").kendoValidator(validatorSettings).data("kendoValidator");
     var ReferralDeliveryDL = $("#ReferralDeliveryDL").kendoDatePicker({
-        dateInput: true, format: "yyyy-MM-dd",
+        dateInput: true, format: "yyyy-MM-dd", value: data.referralDeliveryDL,enable: !vmDate.isReadOnly,
     }).data("kendoDatePicker");
 
 
@@ -47,20 +47,28 @@
         select: AppFunctions.disableDropdownItem(),
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
-        dataSource: vmDate.targetSectorsList
+        dataSource: vmDate.targetSectorsList,
+        value: data.sectorsList ? data.sectorsList.split(';') : null,
+        enable: !vmDate.isReadOnly,
+
     }).data('kendoMultiSelect');
+
+    $("#ReferralTotal").val(data.referralTotal);
+    $("#ReferralTotal").attr('disabled', vmDate.isReadOnly);
 
 
      TargetRequest = $("#TargetRequest").kendoNumericTextBox({
-        format: "#", decimals: 0, min: 0
+         format: "#", decimals: 0, min: 0, value: data.targetRequest,
+         enable: !vmDate.isReadOnly,
     }).data("kendoNumericTextBox");
 
      TotalTarget = $("#TotalTarget").kendoNumericTextBox({
-         format: "#", decimals: 0, min: 0
+         format: "#", decimals: 0, min: 0, value: data.totalTarget,
+         enable: !vmDate.isReadOnly,
     }).data("kendoNumericTextBox");
 
      ReferralTotal = $("#ReferralTotal").kendoNumericTextBox({
-         format: "#", decimals: 0, min: 0
+         format: "#", decimals: 0, min: 0, enable: !vmDate.isReadOnly,
     }).data("kendoNumericTextBox");
 
 

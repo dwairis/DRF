@@ -6,6 +6,7 @@ namespace DRF.ViewModels
 {
     public class OnCreatePost
     {
+        public int Id { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Program Title is required.")]
         [StringLength(100)]
         public string ProgramTitle { get; set; }

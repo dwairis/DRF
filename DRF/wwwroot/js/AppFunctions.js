@@ -16,10 +16,10 @@ AppFunctions.showInfoMsg = function (msg) {
 }
 
 AppFunctions.showLoading = function () {
-    preloader.fadeIn();
+    kendo.ui.progress($("body"), true);
 }
 AppFunctions.hideLoading = function () {
-    preloader.fadeOut();
+    kendo.ui.progress($("body"), false);
 }
 
 

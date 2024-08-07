@@ -12,4 +12,6 @@
 <script>
     var validatorSettings = AppFunctions.validatorSettings;
     validatorStep2 = $("#step2").kendoValidator(validatorSettings).data("kendoValidator");
+    $("#BriefOnProgram").val(data.briefOnProgram);
+    $("#BriefOnProgram").attr('disabled', vmDate.isReadOnly);
 </script>

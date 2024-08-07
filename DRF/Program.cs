@@ -65,24 +65,24 @@ namespace DRF
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            // Optionally, add a custom route for your RequestFormController
-            app.MapControllerRoute(
-                name: "requestForm",
-                pattern: "RequestForm/{action=Index}/{id?}",
-                defaults: new { controller = "RequestForm" });
+            //// Optionally, add a custom route for your RequestFormController
+            //app.MapControllerRoute(
+            //    name: "requestForm",
+            //    pattern: "RequestForm/{action=Index}/{id?}",
+            //    defaults: new { controller = "RequestForm" });
 
-            app.MapControllerRoute(
-                 name: "viewRequests",
-                 pattern: "viewRequests/{id?}",
-                 defaults: new { controller = "Requests", action = "RequestsList" }
-             );
+            //app.MapControllerRoute(
+            //     name: "viewRequests",
+            //     pattern: "viewRequests/{id?}",
+            //     defaults: new { controller = "Requests", action = "RequestsList" }
+            // );
 
 
-            app.MapControllerRoute(
-                name: "requestDetails",
-                pattern: "requestDetails/{id?}",
-                defaults: new { controller = "Requests", action = "Details" }
-            );
+            //app.MapControllerRoute(
+            //    name: "requestDetails",
+            //    pattern: "requestDetails/{id?}",
+            //    defaults: new { controller = "Requests", action = "Details" }
+            //);
 
 
 

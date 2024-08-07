@@ -30,11 +30,15 @@
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
         dataSource: vmDate.organizationList,
-        value: vmDate.organizationId,
+        value: data.organizationId,
         dataBound: function () {
             this.enable(false);
         }
     }).data('kendoDropDownList');
+
+    
+    $("#ProgramTitle").val(data.programTitle);
+    $("#ProgramTitle").attr('disabled', vmDate.isReadOnly);
 
     Donors = $('#Donors').kendoMultiSelect({
         optionLabel: '-- Select Donors --',
@@ -42,7 +46,9 @@
         select: AppFunctions.disableDropdownItem(),
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
-        dataSource: vmDate.donorsList
+        dataSource: vmDate.donorsList,
+        enable: !vmDate.isReadOnly,
+        value: data.donorsList ? data.donorsList.split(';') : null,
     }).data('kendoMultiSelect');
 
     Partners = $('#Partners').kendoMultiSelect({
@@ -52,6 +58,9 @@
         template: AppFunctions.getDropdownItemStyle(),
         dataValueField: 'value',
         dataSource: vmDate.partnersList,
+        enable: !vmDate.isReadOnly,
+        value: data.partnersList ? data.partnersList.split(';') : null,
+
     }).data('kendoMultiSelect');
 
 

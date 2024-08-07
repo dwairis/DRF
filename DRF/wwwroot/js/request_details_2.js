@@ -1,84 +1,46 @@
 ﻿
 
-var reqInit = AppFunctions.getAjaxResponse('/RequestForm/OnCreateInit', 'GET', null);
+var reqInit = AppFunctions.getAjaxResponse('/Requests/OnDetailsInit/' + requestId, 'GET', null);
 var Donors, Organization, Partners;
 var vmDate, validatorStep1, validatorStep2, validatorStep3, validatorStep4, validatorStep5, wizard, ThirdPartyOrganization, Donors, Partners, TargetSectors, Counterpart;
 var data = {};
 reqInit.success = function (response) {
     vmDate = response;
-    data.organizationId = vmDate.organizationId;
 
-    wizard = $("#wizard").kendoWizard({
-        loadOnDemand: true,
+    data = vmDate.data;
+    data.organizationId = data.thirdPartyOrganization;
+    wizard = $("#details-wizard").kendoWizard({
+        loadOnDemand: false,
         reloadOnSelect: false,
         stepper: {
 
-            linear: true
+            linear: false
         },
         steps: [
             {
                 title: "Program",
-                buttons: [{
-                    name: "next", text: "Next", click: function (o) {
-
-                        if (validatorStep1.validate()) {
-                            wizard.select(1);
-                        }
-                    }
-                }],
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
                 contentUrl: "/html_pages/step1.html"
             }, {
                 title: "Brief on Program",
                 contentUrl: "/html_pages/step2.html",
-                buttons: [{
-                    name: "previous", text: "Previous", click: function (o) {
-                        wizard.select(0);
-                    }
-                }, {
-                    name: "next", text: "Next", click: function (o) {
-
-                        if (validatorStep2.validate()) {
-                            wizard.select(2);
-                        }
-                    }
-                }],
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
             }, {
                 title: "Target",
                 contentUrl: "/html_pages/step3.html",
-                buttons: [{ name: "previous", text: "Previous" }, {
-                    name: "next", text: "Next", click: function (o) {
-
-                        if (validatorStep3.validate()) {
-                            wizard.select(3);
-                        }
-                    }
-                }],
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
             }, {
                 title: "Criteria",
                 contentUrl: "/html_pages/step4.html",
-                buttons: [{ name: "previous", text: "Previous" }, {
-                    name: "next", text: "Next", click: function (o) {
-
-                        if (validatorStep4.validate()) {
-                            wizard.select(4);
-                        }
-                    }
-                }],
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
             }, {
                 title: "Timeline",
                 contentUrl: "/html_pages/step5.html",
-                buttons: [{ name: "previous", text: "Previous" }, {
-                    name: "next", text: "Next", click: function (o) {
-
-                        if (validatorStep5.validate()) {
-                            wizard.select(5);
-                        }
-                    }
-                }],
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
             }, {
-                title: "Review",
-                buttons: [{ name: "previous", text: "Previous" }, { name: "done", text: "Submit" }],
-                contentUrl: "/html_pages/reviewsteps.html",
+                title: "Workflow",
+                buttons: [],
+                contentUrl: "/html_pages/timeline.html",
             }
         ],
         done: function (e) {
@@ -109,10 +71,10 @@ reqInit.success = function (response) {
                 var step4 = AppFunctions.SerializeForm('step4');
                 var step5 = AppFunctions.SerializeForm('step5');
 
-                step5.ProjectEndDate= step5.ProjectEndDate == 'year-month-day' ? null : step5.ProjectEndDate;
+                step5.ProjectEndDate = step5.ProjectEndDate == 'year-month-day' ? null : step5.ProjectEndDate;
                 step5.ProjectStartDate = step5.ProjectStartDate == 'year-month-day' ? null : step5.ProjectStartDate;
                 step3.ReferralDeliveryDL = step3.ReferralDeliveryDL == 'year-month-day' ? null : step3.ReferralDeliveryDL;
-                
+
                 AppFunctions.appendObject(data, step1);
                 AppFunctions.appendObject(data, step2);
                 AppFunctions.appendObject(data, step3);
@@ -130,7 +92,7 @@ reqInit.success = function (response) {
                         setTimeout(function (o) {
                             location.href = '/requestForm/Create';
                         }, 2000);
-                        
+
                     } else if (response.result) {
                         AppFunctions.showErrorMsgWithDetails("Invalid or missing data", response.result);
                     } else {
@@ -153,14 +115,7 @@ reqInit.success = function (response) {
         //    }
         //},
         select: function (e) {
-            debugger;
-            if (e.button && e.button.element) {
-                if (!e.button.element.is('[data-wizard-previous]')) {
-                    e.preventDefault();
-                }
-            } else {
-                e.preventDefault();
-            }
+
 
         },
         reset: function () {
@@ -175,3 +130,65 @@ reqInit.success = function (response) {
 
 }
 $.ajax(reqInit);
+
+var saveChanges = function SaveChanges(e) {
+
+    var isValid = true;
+    if (!validatorStep1.validate()) {
+        isValid = false;
+        wizard.select(0);
+    } else if (!validatorStep2.validate()) {
+        isValid = false;
+        wizard.select(1);
+    } else if (!validatorStep3.validate()) {
+        isValid = false;
+        wizard.select(3);
+    } else if (!validatorStep4.validate()) {
+        isValid = false;
+        wizard.select(3);
+    } else if (!validatorStep5.validate()) {
+        isValid = false;
+        wizard.select(4);
+    }
+
+    if (isValid) {
+        var data = {};
+        var step1 = AppFunctions.SerializeForm('step1');
+        var step2 = AppFunctions.SerializeForm('step2');
+        var step3 = AppFunctions.SerializeForm('step3');
+        var step4 = AppFunctions.SerializeForm('step4');
+        var step5 = AppFunctions.SerializeForm('step5');
+
+        step5.ProjectEndDate = step5.ProjectEndDate == 'year-month-day' ? null : step5.ProjectEndDate;
+        step5.ProjectStartDate = step5.ProjectStartDate == 'year-month-day' ? null : step5.ProjectStartDate;
+        step3.ReferralDeliveryDL = step3.ReferralDeliveryDL == 'year-month-day' ? null : step3.ReferralDeliveryDL;
+
+        AppFunctions.appendObject(data, step1);
+        AppFunctions.appendObject(data, step2);
+        AppFunctions.appendObject(data, step3);
+        AppFunctions.appendObject(data, step4);
+        AppFunctions.appendObject(data, step5);
+
+        data.Donors = Donors.value();
+        data.Partners = Partners.value();
+        data.TargetSectors = TargetSectors.value();
+        data.Id = requestId;
+
+        var req = AppFunctions.getAjaxResponse('/Requests/OnUpdatePost', 'POST', data);
+        req.success = function (response) {
+            if (response.code == 200) {
+                AppFunctions.showSucessMsg(response.message);
+                setTimeout(function () {
+                    location.reload();
+                }, 2000)
+                
+
+            } else if (response.result) {
+                AppFunctions.showErrorMsgWithDetails("Invalid or missing data", response.result);
+            } else {
+                AppFunctions.showErrorMsg(response.message);
+            }
+        }
+        $.ajax(req);
+    }
+}

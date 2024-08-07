@@ -203,47 +203,67 @@ $(document).ready(function () {
 // Function to save changes
 function saveChanges() {
     console.log("Save button clicked");
+
     // Collect the updated data from the form fields
     var updatedData = {
-        Id: requestId,
-        thirdPartyOrganization: $('input[name="thirdPartyOrganization"]').val(),
-        programTitle: $('input[name="programTitle"]').val(),
-        donors: $('input[name="donors"]').val().split(', '),
-        partners: $('input[name="partners"]').val().split(', '),
-        briefOnProgram: $('input[name="briefOnProgram"]').val(),
-        targetSectors: $('input[name="targetSectors"]').val().split(', '),
-        targetRequest: $('input[name="targetRequest"]').val(),
-        totalTarget: $('input[name="totalTarget"]').val(),
-        referralDeliveryDL: $('input[name="referralDeliveryDL"]').val(),
-        referralTotal: $('input[name="referralTotal"]').val(),
-        criteria: $('input[name="criteria"]').val(),
-        projectStartDate: $('input[name="projectStartDate"]').val(),
-        projectEndDate: $('input[name="projectEndDate"]').val(),
-        contactPerson: $('input[name="contactPerson"]').val(),
-        hiredSelfEmployed: $('input[name="hiredSelfEmployed"]').is(':checked'),
-        counterpart: $('input[name="counterPart"]').val(),
-        currentStatus: $('input[name="currentStatus"]').val(),
-        notes: $('input[name="notes"]').val(),
-        dataFileUrl: $('input[name="dataFileUrl"]').val(),
-        createdBy: $('input[name="createdBy"]').val(),
-        createdAt: $('input[name="createdAt"]').val()
+        Id: requestId, // Ensure the ID is included
+        ThirdPartyOrganization: $('input[name="thirdPartyOrganization"]').val(),
+        ProgramTitle: $('input[name="programTitle"]').val(),
+        Donors: $('input[name="donors"]').val().split(', ').map(Number), // Ensure numbers
+        Partners: $('input[name="partners"]').val().split(', ').map(Number), // Ensure numbers
+        BriefOnProgram: $('input[name="briefOnProgram"]').val(),
+        TargetSectors: $('input[name="targetSectors"]').val().split(', ').map(Number), // Ensure numbers
+        TargetRequest: parseInt($('input[name="targetRequest"]').val()) || null, // Ensure number
+        TotalTarget: parseInt($('input[name="totalTarget"]').val()) || null, // Ensure number
+        ReferralDeliveryDL: formatDateForBackend($('input[name="referralDeliveryDL"]').val()), // Format date
+        ReferralTotal: parseInt($('input[name="referralTotal"]').val()) || null, // Ensure number
+        Criteria: $('input[name="criteria"]').val(),
+        ProjectStartDate: formatDateForBackend($('input[name="projectStartDate"]').val()), // Format date
+        ProjectEndDate: formatDateForBackend($('input[name="projectEndDate"]').val()), // Format date
+        ContactPerson: $('input[name="contactPerson"]').val(),
+        HiredSelfEmployed: $('input[name="hiredSelfEmployed"]').is(':checked') ? 1 : 0, // Convert to byte
+        CounterPart: parseInt($('input[name="counterPart"]').val()) || null, // Ensure number
+        Notes: $('input[name="notes"]').val(),
+        CurrentStatus: $('input[name="currentStatus"]').val(),
+        DataFileUrl: $('input[name="dataFileUrl"]').val(),
+        CreatedBy: $('input[name="createdBy"]').val(),
+        CreatedAt: formatDateForBackend($('input[name="createdAt"]').val()) // Format date
     };
-    console.log("Updated Data:", updatedData);
+
+    // Log updated data for debugging
+    console.log("Updated Data to be sent:", updatedData);
 
     // AJAX request to update the request details
     var req = AppFunctions.getAjaxResponse('/Requests/UpdateRequest', 'POST', updatedData);
 
     req.success = function (response) {
+        console.log("AJAX Success Response:", response);
         if (response.success) {
             AppFunctions.showSuccessMsg("Request details updated successfully!");
         } else {
             AppFunctions.showErrorMsg("Failed to update request details.");
+            console.log("Error Message:", response.message); // Log error message
         }
     };
 
-    req.error = function () {
+    req.error = function (jqXHR, textStatus, errorThrown) {
+        console.error("AJAX Error:", textStatus, errorThrown);
         AppFunctions.showErrorMsg("An error occurred while updating request details.");
     };
 
     $.ajax(req);
+}
+
+// Function to format date for backend as 'yyyy-MM-dd'
+function formatDateForBackend(dateStr) {
+    var dateParts = dateStr.split('/');
+    if (dateParts.length !== 3) {
+        console.log("Invalid date format:", dateStr);
+        return null;
+    }
+    // Adjust this logic based on your actual date format, e.g., MM/dd/yyyy
+    var day = dateParts[1].padStart(2, '0');
+    var month = dateParts[0].padStart(2, '0');
+    var year = dateParts[2];
+    return `${year}-${month}-${day}`;
 }

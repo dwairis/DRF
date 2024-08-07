@@ -13,7 +13,7 @@ function initializeKendoTimeline(requestId) {
     console.log(timelineInit)
 
     timelineInit.success = function (response) {
-        console.log("Timeline Data:", response); // Debugging log
+        //console.log("Timeline Data:", response); // Debugging log
         if (response && response.length > 0) {
             renderTimeline(response);
         } else {

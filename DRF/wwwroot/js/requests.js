@@ -70,7 +70,7 @@ reqInit.success = function (response) {
         console.log("Selected Data Item: ", dataItem);
 
         if (dataItem && dataItem.id) {
-            window.location.href = '/requestDetails/' + dataItem.id;
+            window.location.href = '/Requests/Details/' + dataItem.id;
         } else {
             console.error("ID not found!");
         }

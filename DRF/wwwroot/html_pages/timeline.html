@@ -1,5 +1,4 @@
-﻿<link href="../css/timeline.css" rel="stylesheet" />
-
+﻿
 <div class="timeline">
     <ul id="workflow-timeline">
     </ul>
@@ -10,7 +9,7 @@
         var requestId = window.location.pathname.split('/').pop();
 
         function initializeBootstrapTimeline(requestId) {
-            var timelineInit = AppFunctions.getAjaxResponse('/Requests/GetRequestUpdates/' + requestId, 'GET', null);
+            var timelineInit = AppFunctions.getAjaxResponse('/Requests/GetRequestStatus/' + requestId, 'GET', null);
 
             timelineInit.success = function (response) {
                 console.log("Timeline Data:", response);
@@ -34,11 +33,11 @@
 
             data.forEach(function (item, index) {
                 var colorClass = "primary";
-                switch (item.update.toLowerCase()) {
-                    case "needs more clarification":
+                switch (item.status) {
+                    case "This is XYZ":
                         colorClass = "warning";
                         break;
-                    case "in progress":
+                    case "N":
                         colorClass = "info";
                         break;
                     case "new":
@@ -47,7 +46,7 @@
                     case "accepted by x":
                         colorClass = "success";
                         break;
-                    case "rejected by y":
+                    case "R":
                         colorClass = "danger";
                         break;
 
@@ -58,7 +57,7 @@
                     <div class="timeline-badge bg-${colorClass}"></div>
                     <div class="timeline-panel bg-${colorClass} text-white">
                         <div class="timeline-heading">
-                            <h5 class="timeline-title">${item.update}</h5>
+                            <h5 class="timeline-title">${item.status}</h5>
                             <p class="timeline-date text-white"><small>${new Date(item.createdAt).toLocaleDateString()}</small></p>
                         </div>
                         <div class="timeline-body">

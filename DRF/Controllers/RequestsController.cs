@@ -14,8 +14,8 @@ namespace DRF.Controllers
         private readonly IRequestDonorsRepository requestDonorsRepository;
         private readonly IRequestPartnersRepository partnersRepository;
         private readonly IRequestTargetSectorsRepository targetSectorsRepository;
-        private readonly IRequestUpdatesRepository updatesRepository;
-        public RequestsController(IRequestUpdatesRepository updatesRepository, ILookupsRepository lookupsRepository, IOrganizationRepository organizationRepository, IRequestsRepository requestsRepository, IRequestDonorsRepository requestDonorsRepository, IRequestPartnersRepository partnersRepository, IRequestTargetSectorsRepository targetSectorsRepository)
+        private readonly IRequestStatusRepository statusRepository;
+        public RequestsController(IRequestStatusRepository statusRepository, ILookupsRepository lookupsRepository, IOrganizationRepository organizationRepository, IRequestsRepository requestsRepository, IRequestDonorsRepository requestDonorsRepository, IRequestPartnersRepository partnersRepository, IRequestTargetSectorsRepository targetSectorsRepository)
         {
             this.lookupsRepository = lookupsRepository;
             this.organizationRepository = organizationRepository;
@@ -23,7 +23,7 @@ namespace DRF.Controllers
             this.requestDonorsRepository = requestDonorsRepository;
             this.partnersRepository = partnersRepository;
             this.targetSectorsRepository = targetSectorsRepository;
-            this.updatesRepository = updatesRepository;
+            this.statusRepository = statusRepository;
         }
 
         [HttpGet]
@@ -59,13 +59,13 @@ namespace DRF.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetRequestUpdates(int id)
+        public IActionResult GetRequestStatus(int id)
         {
-            var updates = updatesRepository.GetRequestUpdates(id).ToList();
+            var updates = statusRepository.GetRequestStatus(id).ToList();
 
             if (updates == null || !updates.Any())
             {
-                return Json(new { success = false, message = "No updates found for this request." });
+                return Json(new { success = false, message = "No status found for this request." });
             }
 
             return Json(updates);

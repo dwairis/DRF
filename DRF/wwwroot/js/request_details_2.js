@@ -12,8 +12,9 @@ reqInit.success = function (response) {
     wizard = $("#details-wizard").kendoWizard({
         loadOnDemand: false,
         reloadOnSelect: false,
-        stepper: {
 
+        stepper: { 
+            indicator: "none", 
             linear: false
         },
         steps: [
@@ -36,6 +37,14 @@ reqInit.success = function (response) {
             }, {
                 title: "Timeline",
                 contentUrl: "/html_pages/step5.html",
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
+            }, {
+                title: "Data",
+                contentUrl: "/html_pages/DataUploadPage.html",
+                buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
+            }, {
+                title: "Comments",
+                contentUrl: "/html_pages/commentsOnRequests.html",
                 buttons: vmDate.isReadOnly ? null : [{ name: "save", text: "Save Changes", click: saveChanges }],
             }, {
                 title: "Workflow",
@@ -126,6 +135,8 @@ reqInit.success = function (response) {
             }
         }
     }).data("kendoWizard");
+
+    $(".k-wizard-pager").hide();
 
 
 }

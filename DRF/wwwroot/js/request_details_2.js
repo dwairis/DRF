@@ -203,3 +203,17 @@ var saveChanges = function SaveChanges(e) {
         $.ajax(req);
     }
 }
+
+function initializeFileUploader() {
+    $("#files").kendoUpload({
+        async: {
+            saveUrl: "/RequestForm/UploadFile",
+            removeUrl: "/RequestForm/RemoveFile",
+            autoUpload: true
+        },
+        validation: {
+            allowedExtensions: [".csv"],
+            maxFileSize: 5242880 // 5 MB
+        }
+    });
+}

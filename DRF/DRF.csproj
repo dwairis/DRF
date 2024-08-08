@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utilities\IAuthService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\request_details_2.js" />
   </ItemGroup>
 
@@ -17,12 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Utilities\IAuthService.cs" />
     <None Include="wwwroot\js\request_details_2.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BouncyCastle.NetCore" Version="2.2.1" />
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
@@ -31,6 +38,15 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DAGCrypto">
+      <HintPath>E:\UNHCRSMSAPI\DAGCrypto\bin\Debug\net8.0\DAGCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="SMSService">
+      <HintPath>E:\UNHCRSMSAPI\SMSService\bin\Debug\net8.0\SMSService.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

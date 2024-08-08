@@ -1,6 +1,6 @@
 ﻿namespace DRF.ViewModels
 {
-    public class RequestUpdate
+    public class RequestStatus
     {
         public int Id { get; set; }
         public int RequestId { get; set; }

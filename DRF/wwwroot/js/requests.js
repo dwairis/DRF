@@ -22,7 +22,7 @@ reqInit.success = function (response) {
 
     $("#requests-grid").kendoGrid({
         dataSource: dataSource,
-        height: 550,
+        height: 650,
         sortable: true,
         pageable: true,
         filterable: true,
@@ -52,7 +52,6 @@ reqInit.success = function (response) {
                 field: "thirdPartyOrganization", title: "Organization", width: "200px", values: [
                     { text: "UNHCR", value: 1 },
                     { text: "WFP", value: 2 },
-                    { text: "Organization C", value: 3 },
                 ] },
             {
                 field: "currentStatus", title: "Current Status", width: "100px", values: [

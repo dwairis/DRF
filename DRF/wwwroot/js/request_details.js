@@ -144,7 +144,7 @@ $(document).ready(function () {
 
     // Bootstrap Timeline Integration
     function initializeBootstrapTimeline(requestId) {
-        var timelineInit = AppFunctions.getAjaxResponse('/Requests/GetRequestUpdates/' + requestId, 'GET', null);
+        var timelineInit = AppFunctions.getAjaxResponse('/Requests/GetRequestStatus/' + requestId, 'GET', null);
 
         timelineInit.success = function (response) {
             console.log("Timeline Data:", response);

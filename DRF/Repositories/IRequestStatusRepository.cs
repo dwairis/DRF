@@ -8,7 +8,7 @@ namespace DRF.Repositories
     public interface IRequestStatusRepository : IDapperRepository<RequestStatus>
     {
 
-        IEnumerable<RequestUpdate> GetRequestStatus(int requestId);
+        IEnumerable<RequestStatus> GetRequestStatus(int requestId);
     }
     public class RequestStatusRepository : DapperRepository<RequestStatus>, IRequestStatusRepository
     {
@@ -19,9 +19,9 @@ namespace DRF.Repositories
             this.sqlConnectionsFactory = sqlConnectionsFactory;
         }
 
-        public IEnumerable<RequestUpdate> GetRequestStatus(int requestId)
+        public IEnumerable<RequestStatus> GetRequestStatus(int requestId)
         {
-            return Query<RequestUpdate>("SELECT * FROM RequestStatus WHERE RequestId = @RequestId", new { RequestId = requestId }, System.Data.CommandType.Text);
+            return Query<RequestStatus>("SELECT * FROM RequestStatus WHERE RequestId = @RequestId", new { RequestId = requestId }, System.Data.CommandType.Text);
         }
 
     }
